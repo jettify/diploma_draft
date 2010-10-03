@@ -1,0 +1,98 @@
+% This document does not intend to be an everything-in-one document for
+% creating the diploma paper. However it does the most meaningfull work
+% for you.
+%
+% You can get the full document list on your cathedra or use the following 
+% (order preserved)
+%
+% 1.  Title page
+% 2.  General task.
+% 3.  Plan.
+% 4.  Separate sections consults (for ex.: ecology and labour proection).
+% 5.  Technical task.
+% 6.  Annotation.
+% 7.  Nomenclature list.
+% 8.  Table of Contents.
+% 9.  Diploma paper itself.
+% 10. Conclusions.
+% 11. Reference list.
+% 12. Appendixes.
+% by Andiy Senkovych
+
+\documentclass[ukrainian,utf8,simple,floatsingle]{eskdtext}
+\usepackage[warn]{mathtext}
+\usepackage[unicode]{hyperref} % enable hyperlinks
+
+% Formulae + cyrillic = wtf???
+% You should use \text{} in formulae to write cyrillic characters. 
+% Unfortunately mathtext package is not supported :(
+% Example: $ \text{а} + \text{б} = \text{в} $
+\usepackage{amssymb} % special math characters
+\usepackage{amsmath} % using cyrillic in formulae
+\usepackage{amsfonts} % special math fonts
+
+\usepackage{graphicx}
+\graphicspath{{algorithms/}{schemes/}{software/}}
+
+\usepackage{listings} % to add source codes
+
+\usepackage{longtable} % multipage tables
+\usepackage{multirow} % using rowspan in tables
+
+\usepackage{nomencl} % support for abbreviations
+\makenomenclature % generate abbrevs index file
+
+\include{variables} % class parameters tuning
+
+\begin{document}
+\ESKDthisStyle{formIIab}
+\printnomenclature
+
+\newpage
+\tableofcontents
+
+\newpage
+\ESKDthisStyle{formIIab}
+\include{introduction}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter1}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter2}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter3}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter4}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter5}
+
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter6}
+
+\newpage
+\ESKDthisStyle{formIIab}
+\include{conclusions}
+
+\newpage
+\ESKDthisStyle{formIIab}
+\include{literature}
+
+\newpage
+\ESKDthisStyle{formIIab}
+\include{appendixA}
+
+\newpage
+\ESKDthisStyle{formIIab}
+\include{appendixB}
+
+\end{document}
