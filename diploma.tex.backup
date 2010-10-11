@@ -48,12 +48,6 @@
 \include{variables} % class parameters tuning
 
 \begin{document}
-
-% Uncoment this to include task to the paper
-%\ESKDthisStyle{formIIab}
-%\include{task}
-%\newpage
-
 \ESKDthisStyle{formIIab}
 \printnomenclature
 
