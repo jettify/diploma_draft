@@ -1,0 +1,8 @@
+_site
+*~
+*.aux
+*.log
+*.out
+*.toc
+*.backup
+*.nlo

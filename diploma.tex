@@ -22,7 +22,9 @@
 % Many thanks to my friend Andriy, for this template, original comments saved
 % 
 
-\documentclass[ukrainian,utf8,simple,floatsingle]{eskdtext}
+\documentclass[ukrainian,utf8,simple,floatsingle, hpadding=5mm]{eskdtext}
+% hpadding= 
+
 \usepackage[warn]{mathtext}
 \usepackage[unicode]{hyperref} % enable hyperlinks
 
@@ -33,6 +35,7 @@
 \usepackage{amssymb} % special math characters
 \usepackage{amsmath} % using cyrillic in formulae
 \usepackage{amsfonts} % special math fonts
+\usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
 
 \usepackage{graphicx}
 \graphicspath{{algorithms/}{schemes/}{software/}} % look up folders for figures
@@ -53,6 +56,12 @@
 %\ESKDthisStyle{formIIab}
 %\include{task}
 %\newpage
+% Uncoment this to include task to the paper
+\newpage
+\ESKDthisStyle{empty}
+\include{annotation}
+
+
 
 \ESKDthisStyle{formIIab}
 \printnomenclature
@@ -72,36 +81,36 @@
 \ESKDthisStyle{formII}
 \include{chapter2}
 
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter3}
-
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter4}
-
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter5}
-
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter6}
-
-\newpage
-\ESKDthisStyle{formIIab}
-\include{conclusions}
-
-\newpage
-\ESKDthisStyle{formIIab}
-\include{literature}
-
-\newpage
-\ESKDthisStyle{formIIab}
-\include{appendixA}
-
-\newpage
-\ESKDthisStyle{formIIab}
-\include{appendixB}
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter3}
+% 
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter4}
+% 
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter5}
+% 
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter6}
+% 
+% \newpage
+% \ESKDthisStyle{formIIab}
+% \include{conclusions}
+% 
+% \newpage
+% \ESKDthisStyle{formIIab}
+% \include{literature}
+% 
+% \newpage
+% \ESKDthisStyle{formIIab}
+% \include{appendixA}
+% 
+% \newpage
+% \ESKDthisStyle{formIIab}
+% \include{appendixB}
 
 \end{document}
