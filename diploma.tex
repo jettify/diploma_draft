@@ -17,16 +17,20 @@
 % 10. Conclusions.
 % 11. Reference list.
 % 12. Appendixes.
-% by Andriy Senkovych
+% Andriy Senkovych
 %
 % Many thanks to my friend Andriy, for this template, original comments saved
 % 
 
-\documentclass[ukrainian,utf8,simple,floatsingle, hpadding=5mm]{eskdtext}
-% hpadding= 
+\documentclass[ukrainian,utf8,simple,floatsubsection, hpadding=5mm,equationsubsection,]{eskdtext}
+% hpadding=5mm  intend between frame and text, by default 3mm
+% hpadding=5mm  відступ між початком і кінцем стрічки тексту та рамкою, по замовчанню 3 мм
+% equationsubsection enumerate formula based on subsection
+% equationsubsection нумерація формул в межах підрозділу
+
 
 \usepackage[warn]{mathtext}
-\usepackage[unicode]{hyperref} % enable hyperlinks
+\usepackage[unicode]{hyperref} % enable hyperlinks (активувати посилання)
 
 % Formulae + cyrillic = wtf???
 % You should use \text{} in formulae to write cyrillic characters. 
@@ -36,9 +40,14 @@
 \usepackage{amsmath} % using cyrillic in formulae
 \usepackage{amsfonts} % special math fonts
 \usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
+ % розраховує кількість сторінок, рисунків, таблиць і додатків в документі.
 
-\usepackage{graphicx}
-\graphicspath{{algorithms/}{schemes/}{software/}} % look up folders for figures
+\usepackage{graphicx,epstopdf}
+% epstopdf-convert eps files to pdf
+\graphicspath{{algorithms/}{schemes/}{software/}{fig/}} % look up folders for figures
+%\usepackage{epsfig} % include .eps files
+
+
 
 \usepackage{listings} % to add source codes
 
