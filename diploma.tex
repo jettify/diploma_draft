@@ -39,13 +39,15 @@
 \usepackage{amssymb} % special math characters
 \usepackage{amsmath} % using cyrillic in formulae
 \usepackage{amsfonts} % special math fonts
-\usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
- % розраховує кількість сторінок, рисунків, таблиць і додатків в документі.
 
-\usepackage{graphicx,epstopdf}
-% epstopdf-convert eps files to pdf
+\usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
+% You should use \ESKDtotal{page} to count number of pages in Diploma
+% \ESKDtotal{figure} to count number of figures
+% \ESKDtotal{bibitem} - count number of references
+
+\usepackage{graphicx,epstopdf} % epstopdf-convert eps files to pdf
 \graphicspath{{algorithms/}{schemes/}{software/}{fig/}} % look up folders for figures
-%\usepackage{epsfig} % include .eps files
+
 
 
 
@@ -90,9 +92,9 @@
 \ESKDthisStyle{formII}
 \include{chapter2}
 
-% \newpage
-% \ESKDthisStyle{formII}
-% \include{chapter3}
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter3}
 % 
 % \newpage
 % \ESKDthisStyle{formII}
@@ -110,9 +112,9 @@
 % \ESKDthisStyle{formIIab}
 % \include{conclusions}
 % 
-% \newpage
-% \ESKDthisStyle{formIIab}
-% \include{literature}
+\newpage
+\ESKDthisStyle{formIIab}
+\include{literature}
 % 
 % \newpage
 % \ESKDthisStyle{formIIab}
