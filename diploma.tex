@@ -36,6 +36,14 @@
 % You should use \text{} in formulae to write cyrillic characters. 
 % Unfortunately mathtext package is not supported :(
 % Example: $ \text{а} + \text{б} = \text{в} $
+
+% explanation for formulas should be in next form:
+% \begin{ESKDexplanation}
+%     \item  [something]
+%     \item  [something else]
+% \end{ESKDexplanation}
+
+
 \usepackage{amssymb} % special math characters
 \usepackage{amsmath} % using cyrillic in formulae
 \usepackage{amsfonts} % special math fonts
@@ -88,13 +96,22 @@
 \ESKDthisStyle{formII}
 \include{chapter1}
 
+% Chapter 2 with subsections
+% 
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter2}
+\ESKDthisStyle{formIIab}
+\include{chapter2.2}
+%\ESKDthisStyle{formIIab}
+% \include{chapter2.3}
+% \ESKDthisStyle{formIIab}
+% \include{chapter2.4}
 
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter3}
+% Chapter 3
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter3}
 % 
 % \newpage
 % \ESKDthisStyle{formII}
@@ -112,6 +129,7 @@
 % \ESKDthisStyle{formIIab}
 % \include{conclusions}
 % 
+% Print reference page
 \newpage
 \ESKDthisStyle{formIIab}
 \include{literature}
