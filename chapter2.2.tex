@@ -1,4 +1,3 @@
-
 \subsection{Алгоритми роботи трикомпонентної БІНС}
 
 Алгоритм функціонування БІНС містить у собі сукупність аналітичних залежностей, які 
@@ -12,7 +11,7 @@
 прискорення. Але вплив цих складових компенсується на відміну від платформної ІНС 
 тільки аналітично. 
 
- Кінематичні рівняння інерціальної  навігації в основному визначаються вибраною системою 
+Кінематичні рівняння інерціальної  навігації в основному визначаються вибраною системою 
 координат, тобто навігаційним базисом, в якому визначаються навігаційні параметри 
 (координати і проекції швидкості). У свою чергу, вибір навігаційного базису залежить 
 від типу літального апарата, особливостей його траєкторного руху, характеру розв'язуваних 
@@ -39,7 +38,7 @@
 сторонами світу, або проекціями на осі горизонтального базису з іншою орієнтацією. 
 Орієнтація при цьому визначається кутами крену, тангажа і аправжнього курсу.
 
-Типову схему побудови БІНС зображено на \textbf{рис. 8.5}. Цей варіант реалізує алгоритм системи, 
+Типову схему побудови БІНС зображено на рис. \ref{fig:SDINS}. Цей варіант реалізує алгоритм системи, 
 яка працює в обертовій земній системі координат.
 
 Датчики первинної інформації БІНС -- датчики кутової швидкості й акселерометри встановлюються 
@@ -52,6 +51,13 @@
 Для корекції показань датчиків первинної інформації необхідна математична модель 
 вимірника, в якій, зазвичай, враховують: нелінійність; неспіввісність осей датчиків; 
 дрейф; викривлення масштабного коефіцієнта.
+
+\begin{figure}[here]
+\centering
+%\includegraphics[scale=0.9]{earth}
+\caption{Алгоритм роботи БІНС}
+\label{fig:SDINS}
+\end{figure} 
 
 Сигнали $\omega_{x,y,z}$ з виходу аналітичного компенсатора похибок використовуються 
 для обчислення параметрів матриці напрямних  косинусів \textit{В}, яка визначає зв'язок 
@@ -73,7 +79,7 @@
 
 В окремому випадку, коли за навігаційний базис вибраний горизонтальний орієнтований 
 за сторонами світу тригранник, на виході системи будуть сформовані географічні (геодезичні) 
-координати радіуса-вектора місця розташування \textit{B}, \textit{L}, \textit{H}, проекції 
+координати радіуса-вектора місця розташування $\lambda$, $\varphi$, \textit{H}, проекції 
 відносної швидкості руху $V_N$, $V_E$, $V_H$, а також 
 кути орієнтації ЛА в географічній системі координат -- справжній курс $\psi$, тангаж $\vartheta$ і 
 крен $\gamma$. 
@@ -101,8 +107,8 @@
 З огляду на вище сказане, наведемо  варіант побудови алгоритмів БІНС для випадку, 
 коли за навігаційний базис вибраний горизонтальний орієнтований за сторонами світу 
 тригранник.
-
 \vspace{5mm}
+
 \textbf{Алгоритми БІНС, яка працює в географічній системі координат}
 
 За навігаційний тригранник візьмемо тригранник \textit{NHE}, зв'язаний з земною поверхнею.
@@ -119,12 +125,12 @@
 \textit{ОЕ} -- утворює праву трійку.\\ 
 
 В алгоритмах БІНС, зазвичай, виділяють динамічні та кінематичні рівняння. 
-Динамічні рівняння реалізують трикомпонентну схему БІНС, у якій географічні координати  \textit{L}, 
-\textit{B,Н} визначаються інтегруванням рівнянь вигляду
+Динамічні рівняння реалізують трикомпонентну схему БІНС, у якій географічні координати  $\lambda$, 
+$\varphi$,\textit{Н} визначаються інтегруванням рівнянь вигляду
 
 \[\begin{array}{l} 
-{\dot{L}=\frac{V_{E} }{(R_{2} +H)\cos B} ;} \\ 
-{\dot{B}=\frac{V_{N} }{R_{1} +H} ;} \\ 
+{\dot{\lambda}=\frac{V_{E} }{(R_{2} +H)\cos \varphi} ;} \\ 
+{\dot{\varphi}=\frac{V_{N} }{R_{1} +H} ;} \\ 
 {\dot{H}=V_{H,} } 
 \end{array}\] 
 
@@ -136,18 +142,15 @@
 \item $R_2$  -- радіус кривизни перетину еліпсоїда площиною \textit{HЕ} (площиною першого вертикала); 
 \end{ESKDexplanation}
 
-
-
 \[
-R_{1} =\frac{a(1-e^{2})}{(1-e^{2} \sin(B)^{2})^{\frac{3}{2}} }; \,\\
-R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
+R_{1} =\frac{a(1-e^{2})}{(1-e^{2} \sin(\varphi)^{2})^{\frac{3}{2}} }; \,\\
+R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(\varphi)^{2} } }.
 \] 
 
 \begin{ESKDexplanation}
 \item де\textit{ a}  --- велика піввісь  еліпсоїда (\textit{a }=  6378388 м); 
-\item \textit{е} --- ексцентриситет еліпсоїда  ($е^2 = 6,73 10^{-3}$);  
-\item \textit{Н}  -- висота 
-польоту. 
+\item \textit{e} --- ексцентриситет еліпсоїда  ($e^{2} = 6,73 10^{-3}$);  
+\item \textit{Н}  --- висота польоту. 
 \end{ESKDexplanation}
 
 Тут можна застосовувати такі ж спрощення, що й у платформних інерціальних системах. 
@@ -157,14 +160,14 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 
 \[\begin{array}{l} 
 {\frac{1}{R_{1} +H} =\frac{1}{a} [1-e^{2} -\frac{H}{a} 
--\frac{3}{2} e^{2} \sin ^{2} B-2e^{2} \frac{H}{a} +3e^{2} \frac{H}{a} \sin 
-^{2} B + (\frac{H}{a} )^{2} +}\\
-{+e^{4} (1-3\sin ^{2} B+\frac{3}{8}\sin ^{4} B);} \\ 
+-\frac{3}{2} e^{2} \sin ^{2} \varphi-2e^{2} \frac{H}{a} +3e^{2} \frac{H}{a} \sin 
+^{2} \varphi + (\frac{H}{a} )^{2} +}\\
+{+e^{4} (1-3\sin ^{2} B+\frac{3}{8}\sin ^{4} \varphi);} \\ 
 
 {\frac{1}{R_{2} +H} =\frac{1}{a}[1-\frac{H}{a} 
--\frac{1}{2} e^{2} \sin ^{2} B+(\frac{H}{a})^{2} +e^{2} \frac{H}{a} 
-\sin ^{2} B+} \\ 
-{+e^{4}(\frac{1}{4} \sin ^{2} B-\frac{3}{8})\sin ^{2} B]} 
+-\frac{1}{2} e^{2} \sin ^{2} \varphi+(\frac{H}{a})^{2} +e^{2} \frac{H}{a} 
+\sin ^{2} \varphi+} \\ 
+{+e^{4}(\frac{1}{4} \sin ^{2} \varphi-\frac{3}{8})\sin ^{2} \varphi]} 
 \end{array}\] 
 
 Якщо у формулах $\frac{1}{R_{1} +H}$ та $\frac{1}{R_{2} +H}$ 
@@ -175,11 +178,11 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 \label{eq:elips} 
 \begin{array}{l} 
 {\frac{1}{R_{1} +H} \approx \frac{1}{a}[1-e^{2} -\frac{H}{a} -\frac{3}{2} e^{2} \sin(B)^{2}];} \\ 
-{\frac{1}{R_{2} +H} \approx \frac{1}{a}[1-\frac{H}{a} -\frac{1}{2} e^{2} \sin(B)^{2}].} 
+{\frac{1}{R_{2} +H} \approx \frac{1}{a}[1-\frac{H}{a} -\frac{1}{2} e^{2} \sin(\varphi)^{2}].} 
 \end{array} 
 \end{equation} 
 
-Слід відзначити, що використання спрощень \eqref{eq:elipse} може призвести 
+Слід відзначити, що використання спрощень \eqref{eq:elips} може призвести 
 до похибок, порівняних з похибками високоякісних гіроскопічних вимірників, які використовуються 
 в БІНС.
 
@@ -204,9 +207,9 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 \item складові в дужках --- проекції коріолісового прискорення на осі навігаційного тригранника; 
 \item $\omega_{E_{\Sigma}}\, \omega_{H_{\Sigma}}\, \omega_{N_{\Sigma}}$ --- проекції кутової 
 швидкості навігаційного тригранника відносно інерціального простору, які враховують 
-проекції кутової швидкості обертання Землі $\Omega_{E} \, \Omega_{H} \, \Omega_{N} $ 
+проекції кутової швидкості обертання Землі $\Omega_{E}$, $\Omega_{H}$, $\Omega_{N}$ 
 і складові відносної кутової швидкості навігаційного тригранника, які обумовлені 
-рухом ЛА відносно Землі $\omega_{E_{V} }\, \omega_{H_{V} }\, \omega_{N_{V}} $: 
+рухом ЛА відносно Землі $\omega_{E_{V} }$, $\omega_{H_{V} }$, $\omega_{N_{V}}$: 
 \end{ESKDexplanation}
 
 \[
@@ -217,24 +220,21 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 
 У свою чергу, складові відносної кутової швидкості навігаційного тригранника і швидкості 
 обертання Землі визначаються співвідношеннями
+\[
+\begin{array}{l} 
+{\omega_{E_{V}} =-\frac{V_{N} }{R_{1} +H} =-\dot{\varphi};} \\ 
+{\omega_{H_{V}} =\frac{V_{E}}{(R_{2} +H)} tg\varphi=\dot{\lambda}\sin \varphi;} \\ 
+{\omega_{N_{V}} =\frac{V_{E} }{(R_{2} +H)} =\dot{\lambda}\cos \varphi;} \end{array}\] 
 
 \[
-  \begin{array}{l} 
-{\omega_{E_{V}} =-\frac{V_{N} }{R_{1} +} =-\dot{B};} \\ 
-{\omega_{H_{V}} =\frac{V_{E}}{(R_{2} +H)} tgB=\dot{L}\sin B;} \\ 
-{\omega_{N_{V}} =\frac{V_{E} }{(R_{2} +H)} =\dot{L}\cos B;} \end{array}\] 
-
-\[
-\Omega_{N} =\Omega_{\text{З}}\cos B;
-\Omega_{H} =\Omega_{text{З}}\sin B; 
+\Omega_{N} =\Omega_{\text{З}}\cos \varphi;
+\Omega_{H} =\Omega_{\text{З}}\sin \varphi; 
 \Omega_{E} =0,
 \] 
 
 \begin{ESKDexplanation}
- \item де  $\Omega_{{\rm 7}} $ --- кутова швидкість обертання Землі ($\Omega_{\text{З}}=7,27 \cdot 10^{-5}$ рад/с).
+ \item де  $\Omega_{\text{З}} $ --- кутова швидкість обертання Землі ($\Omega_{\text{З}}=7,27 \cdot 10^{-5}$ рад/с).
 \end{ESKDexplanation}
-
-
 
 Детермінована математична модель прискорення сили ваги існує тільки для нормальної 
 складової поля сили ваги, що відповідає земному еліпсоїду з рівномірним розподілом 
@@ -243,19 +243,18 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 перетину. Оскільки точка місцеположення ЛА не належить поверхні Землі, то вектор 
 градієнта нормального поля сили ваги $\bar{g}$ в цій точці не буде спрямований за 
 лінією нормалі, опущеної з неї до поверхні земного еліпсоїда (вісь \textit{ОН}). 
-Разом з тим, цей вектор буде розташований у площині меридіана точки \textit{О, }тобто 
+Разом з тим, цей вектор буде розташований у площині меридіана точки \textit{О}, тобто 
 в площині \textit{NOH. }Тоді, використовуючи  потенційну функцію нормального поля 
-тяжіння земного сфероїда, з точністю до членів порядку малості 10--5  співвідношення 
+тяжіння земного сфероїда, з точністю до членів порядку малості $10^{-5}$  співвідношення 
 для проекцій складових поля сили ваги $\bar{g}$ мають такий вигляд:
-
 \[
 \begin{array}{l} 
 {g_{E} =0;} \\
-{g_{N} =\frac{1}{2} g[\frac{H}{a} (e^{2} -5q)+qe^{2} \sin^{2}B]\sin2B;}\\
+{g_{N} =\frac{1}{2} g[\frac{H}{a} (e^{2} -5q)+qe^{2} \sin^{2}\varphi]\sin^2\varphi;}\\
 {g_{H} =-g\left\{1-2\frac{H}{a} -\right. (e^{2} +2q-3\frac{H}{a})
 \frac{H}{a} +\left[\frac{1}{2} (5q-e\right. ^{2} )-\frac{1}{8} e^{4} +\frac{17}{18}qe^{2} +} \\ 
-{ +(3e^{2} - 5q)\frac{H}{a} ]\sin ^{2} B-\frac{1}{2} qe^{2} \sin ^{4} B+\frac{1}{16} e^{2} 
-(\frac{1}{2} e^{2} -7q)\sin ^{2} 2B\},} 
+{ +(3e^{2} - 5q)\frac{H}{a} ]\sin ^{2} B-\frac{1}{2} qe^{2} \sin ^{4} \varphi+\frac{1}{16} e^{2} 
+(\frac{1}{2} e^{2} -7q)\sin ^{2} 2\varphi\},} 
 \end{array}
 \]
 \begin{ESKDexplanation}
@@ -268,34 +267,34 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 поля сили ваги $\bar{g}$ декілька спрощуються:
 
 \[
- \begin{array}{l} 
+\begin{array}{l} 
 { g_{E} =0;} \\ 
-{g_{N} =g\sin 2B+\frac{5}{2} q\sin ^{2} B\frac{H}{a}(\frac{e^{2} }{2} -2q);} \\ 
-{g_{H} =-g\left[1-\frac{e^{2} }{2}\sin ^{2} B+\frac{3}{2} q\sin ^{2} B+e^{4}(-\frac{1}{8} \sin ^{2} B+\frac{1}{32} 
-\sin ^{2} 2B\right)+} \\ 
+{g_{N} =g\sin 2\varphi+\frac{5}{2} q\sin ^{2} B\frac{H}{a}(\frac{e^{2} }{2} -2q);} \\ 
+{g_{H} =-g\left[1-\frac{e^{2} }{2}\sin ^{2} \varphi+\frac{3}{2} q\sin ^{2} \varphi+e^{4}(-\frac{1}{8} \sin ^{2} \varphi+\frac{1}{32} 
+\sin ^{2} 2\varphi\right)+} \\ 
 { +e^{2} q\left(-\frac{17}{28} 
-\sin ^{2} B-\frac{5}{16} \sin ^{2} 2B\right)+\frac{H}{a} e^{2} (3\sin ^{2} B-1)}\\ 
-{ +\frac{Hq}{a} (-1-6\sin ^{2}B)-2\frac{H}{a} +3\frac{H^{2} }{a^{2} }],} 
+\sin ^{2} \varphi-\frac{5}{16} \sin ^{2} 2\varphi\right)+\frac{H}{a} e^{2} (3\sin ^{2} \varphi-1)+}\\ 
+{ +\frac{Hq}{a} (-1-6\sin ^{2}\varphi)-2\frac{H}{a} +3\frac{H^{2} }{a^{2} }],} 
 \end{array}
 \] 
 
 а при малих значеннях висоти ($Н\leq$ 100 км ) проекції вектора  $\bar{g}$ на 
-осі  \textit{NHE}, якщо в них зберегти лише члени порядку малості $10^{-2}$, 
+осі \textit{NHE}, якщо в них зберегти лише члени порядку малості $10^{-2}$, 
 взагалі мають простий вигляд: 
-
-\[\begin{array}{l} 
+\[
+\begin{array}{l} 
 {g_{E} =0;}\\
 {g_{N} =0;}\\ 
-{g_{H} =-g(1+5,2884\cdot 10^{-3} \sin ^{2}B)[1-\frac{2H}{a}
-(1-e\sin^{2}B )]} 
-\end{array}\] 
-
+{g_{H} =-g(1+5,2884\cdot 10^{-3} \sin ^{2}\varphi)[1-\frac{2H}{a}
+(1-e\sin^{2}\varphi )]} 
+\end{array}
+\] 
 Є й інші форми запису даної складової.
 
- При розв'язанні кінематичних рівнянь розраховуються проекції \textit{$0_{E,H,N} $ }уявного 
-прискорення ЛА на осі навігаційного тригранника \textit{NHE }за показаннями акселерометрів 
-зі зв'язаної з ЛА системи координат \textit{XYZ  }з використанням матриці напрямних  
-косинусів \textit{В}
+При розв'язанні кінематичних рівнянь розраховуються проекції $a_{E,H,N} $ уявного 
+прискорення ЛА на осі навігаційного тригранника \textit{NHE}за показаннями акселерометрів 
+зі зв'язаної з ЛА системи координат \textit{XYZ} з використанням матриці напрямних  
+косинусів \textbf{В}
 
 \[
  \left[\begin{array}{c} 
@@ -313,65 +312,85 @@ R_{2} =\frac{a}{\sqrt{1-e^{2} \sin(B)^{2} } }.
 Матриця напрямних  косинусів  має такий вигляд:
 
 \[
-  B=\left[\begin{array}{c|c|c} {\cos \psi \cos \vartheta } & {\sin \psi \sin \gamma 
--\cos \psi \sin \vartheta \cos \gamma } & {\sin \psi \cos \gamma +\sin \gamma \sin 
-\vartheta \cos \psi } \\  \hline {\sin \vartheta } & {\cos \vartheta \cos \gamma 
-} & {-\cos \vartheta \sin \gamma } \\  \hline {-\sin \psi \cos \vartheta } & {\cos 
-\psi \sin \gamma +\sin \psi \sin \vartheta \cos \gamma } & {\cos \psi \cos \gamma 
--\sin \psi \sin \vartheta \sin \gamma } \end{array}\right]
+B=\left[\begin{array}{c|c|c} 
+{\cos \psi \cos \vartheta } & 
+{\sin \psi \sin \gamma -\cos \psi \sin \vartheta \cos \gamma } & 
+{\sin \psi \cos \gamma +\sin \gamma \sin \vartheta \cos \psi } \\  \hline {\sin \vartheta } & 
+{\cos \vartheta \cos \gamma} & 
+{-\cos \vartheta \sin \gamma } \\  \hline {-\sin \psi \cos \vartheta } & 
+{\cos \psi \sin \gamma +\sin \psi \sin \vartheta \cos \gamma } & 
+{\cos \psi \cos \gamma -\sin \psi \sin \vartheta \sin \gamma } 
+\end{array}\right]
 \] 
-
-
 
 де $\gamma$, $\vartheta$, $\psi$ -- кути крену, тангажа і рискання. Кут рискання 
 відрізняється від географічного курсу $\psi$г знаком, тобто $\psi$г = $\psi$.
 
-Матриця 
-напрямних  косинусів \textit{В} може бути отримана в різні способи. Наведемо приклади 
+Матриця напрямних  косинусів \textbf{В} може бути отримана в різні способи. Наведемо приклади 
 деяких з них. 
 
-Матриця напрямних  косинусів \textit{В} може бути отримана в результаті розв'язання 
+Знайти матрицю \textbf{В} можна в результаті розв'язання 
 узагальненого рівняння Пуассона за інформацією про кутову швидкість ЛА відносно інерціального 
-простору \textbf{$\omega$}ЛА і кутову швидкість навігаційної системи координат відносно 
-інерціального простору \textbf{$\omega$}\textit{NHE}, яка враховує кутову швидкість 
+простору $\omega_{\text{ЛА}}$ і кутову швидкість навігаційної системи координат відносно 
+інерціального простору $\omega_{NHE}$, яка враховує кутову швидкість 
 обертання Землі і кутову швидкість, обумовлену обльотом ЛА сферичної Землі 
 
-\[\dot{}=\omega_{} -\omega_{NHE} ,\] 
+\[
+  \dot{B}=B\omega_{\text{ЛА}} -\omega_{NHE}B
+\] 
 
 де 
 
-\[\omega_{{\rm }} =\left[\begin{array}{ccc} {0} & {-\omega_{z_{{\rm }} } } & {
-\omega_{y_{{\rm }} } } \\ {\omega_{z_{{\rm }} } } & {0} & {-\omega_{x_{{\rm }} 
-} } \\ {-\omega_{y_{{\rm }} } } & {\omega_{x_{{\rm }} } } & {0} \end{array}\right]
-\, ;\, \, \omega_{NHE} =\left[\begin{array}{ccc} {0} & {-(\omega_{E_{V} } +\Omega 
-_{E} )} & {(\omega_{H_{V} } +\Omega_{H} )} \\ {(\omega_{E_{V} } +\Omega_{E} )} 
-& {0} & {-(\omega_{N_{V} } +\Omega_{N} )} \\ {-(\omega_{H_{V} } +\Omega_{H} )} 
-& {(\omega_{N_{V} } +\Omega_{N} )} & {0} \end{array}\right];\] 
+\[\omega_{\text{ЛА}} =\left[\begin{array}{ccc} 
+{0} & {-\omega_{z_{\text{ЛА}} } } & {\omega_{y_{\text{ЛА}}}} \\ 
+{\omega_{z_{\text{ЛА}} } } & {0} & {-\omega_{x_{\text{ЛА}}}} \\ 
+{-\omega_{y_{\text{ЛА}} } } & {\omega_{x_{\text{ЛА}} } } & {0} 
+\end{array}\right];\]\\
 
-$\omega$\textit{x}ЛА, $\omega$\textit{y}ЛА, $\omega$\textit{z}ЛА  -- кутові 
-швидкості ЛА відносно зв'язаних осей, вимірювані датчиками кутової швидкості; $\Omega 
-_{} ,\, \, \Omega_{} ,\, \, \Omega_{N} $ і $\omega_{_{V} } ,{\rm \; }\omega_{_{V} 
-} ,{\rm \; }\omega_{N_{V} } $ були визначені раніше.
+\[\omega_{NHE} =\left[\begin{array}{ccc} 
+{0} & {-(\omega_{E_{V} } +\Omega_{E} )} & {(\omega_{H_{V} } +\Omega_{H} )} \\ 
+{(\omega_{E_{V} } +\Omega_{E})} & {0} & {-(\omega_{N_{V} } +\Omega_{N} )} \\ 
+{-(\omega_{H_{V} } +\Omega_{H})}& {(\omega_{N_{V} } +\Omega_{N} )} & {0} 
+\end{array}\right];\] 
 
-За елементами матриці  \textit{B} визначаються кути орієнтації ЛА:   крен $\gamma$, тангаж 
+\begin{ESKDexplanation}
+  \item $\omega_{x_{\text{ЛА}}}$, $\omega_{y_{\text{ЛА}}}$, $\omega_{z_{\text{ЛА}}}$  -- кутові 
+  швидкості ЛА відносно зв'язаних осей, вимірювані датчиками кутової швидкості; 
+  \item $\omega_{E_{V} }$, $\omega_{H_{V} }$, $\omega_{N_{V}}$ були визначені раніше.
+\end{ESKDexplanation}
+
+За елементами матриці  \textit{B} визначаються кути орієнтації ЛА: крен $\gamma$, тангаж 
 $\vartheta$ рискання (курс) $\psi $: 
 
-\begin{equation} \label{eq:__8_17_} \begin{array}{l} {\gamma ={\rm arctg}\left(
+\begin{equation} 
+\label{eq:angels} 
+\begin{array}{l} 
+{\gamma ={\rm arctg}\left(
 \frac{-b_{23} }{b_{22} } \right)={\rm arcsin}\left(\frac{-b_{23} }{\sqrt{1-b_{21}^{2} 
-} } \right)={\rm arccos}\left(\frac{b_{22} }{\sqrt{1-b_{21}^{2} } } \right)\; ;\, 
-} \\ {\vartheta ={\rm arctg}\left(\frac{b_{21} }{\sqrt{b_{22}^{2} +b_{33}^{2} } } 
+} } \right)={\rm arccos}\left(\frac{b_{22} }{\sqrt{1-b_{21}^{2} } } \right)\; ; 
+} \\ 
+{\vartheta ={\rm arctg}\left(\frac{b_{21} }{\sqrt{b_{22}^{2} +b_{33}^{2} } } 
 \right){\rm \; }={\rm arcsin(}b_{21} {\rm )}={\rm arccos}\left(\sqrt{1-b_{21}^{2} 
-} \right)\, \, ;\, } \\ {\psi =-{\rm arctg}\left(\frac{b_{31} }{b_{11} } \right)={
+} \right)} \\ 
+{\psi =-{\rm arctg}\left(\frac{b_{31} }{b_{11} } \right)={
 \rm arcsin}\left(\frac{-b_{31} }{\sqrt{1-b_{21}^{2} } } \right)={\rm arccos}\left(
-\frac{b_{11} }{\sqrt{1-b_{21}^{2} } } \right){\rm \; \; }.\, \, \, \, } \end{array} \end{equation} 
+\frac{b_{11} }{\sqrt{1-b_{21}^{2} } } \right).} 
 
-Інший 
-алгоритм отримання матриці напрямних косинусів припускає її  формування безпосередньо 
+\end{array} 
+\end{equation} 
+
+Інший алгоритм отримання матриці напрямних косинусів припускає її  формування безпосередньо 
 за кутами  $\gamma$, $\vartheta$, $\psi$. 
 
+\begin{figure}[here]
+\centering
+%\includegraphics[scale=0.9]{earth}
+\caption{Системи координат}
+\label{fig:kinemat}
+\end{figure} 
 Кінематичні співвідношення між кутами $\gamma$, $\vartheta$, $\psi$ і проекціями вектора абсолютної кутової 
-швидкості на осі зв'язаної системи координат $\omega_{x_{\Sigma } } ,{\rm \; }\, 
-\, \omega_{y_{\Sigma } ,} $ $\omega_{z_{\Sigma } } $ можна одержати з рис.  8.7, 
+швидкості на осі зв'язаної системи координат $\omega_{x_{\Sigma } }$ , $\omega_{y_{\Sigma }}$, 
+$\omega_{z_{\Sigma}} $ можна одержати з рис. \ref{fig:kinemat}, 
 на якому показано перетворення навігаційної системи координат \textit{OLR$\Phi $ }у 
 зв'язану \textit{OXYZ} шляхом трьох поворотів: \textit{1}   навколо осі \textit{OR}; \textit{2}  
 навколо проміжної осі \textit{OZ*}; \textit{3}  навколо осі \textit{OX}.
@@ -383,53 +402,67 @@ $\vartheta$ рискання (курс) $\psi $:
  Проектуючи $\dot{\psi }$,$\dot{\vartheta }$, $\dot{\gamma }$на осі зв'язаної системи 
 координат, отримаємо:
 
-\[\begin{array}{l} {\omega_{x_{\Sigma } } =\dot{\gamma }+\dot{\psi }\sin \vartheta 
-;} \\ {\omega_{y_{\Sigma } } =\dot{\vartheta }\sin \gamma +\dot{\psi }\cos \vartheta 
-\cos \gamma ;} \\ {\omega_{z_{\Sigma } } =\dot{\vartheta }\cos \gamma -\dot{\psi 
-}\cos \vartheta \sin \gamma .} \end{array}\] 
+\[\begin{array}{l} 
+{\omega_{x_{\Sigma } } =\dot{\gamma }+\dot{\psi }\sin \vartheta ;} \\ 
+{\omega_{y_{\Sigma } } =\dot{\vartheta }\sin \gamma +\dot{\psi}\cos \vartheta\cos \gamma ;} \\ 
+{\omega_{z_{\Sigma } } =\dot{\vartheta }\cos \gamma -\dot{\psi}\cos \vartheta \sin \gamma .} 
+\end{array}\] 
 
 Розв'язуючи ці співвідношення, одержимо такі кінематичні рівняння:
 
-\[\begin{array}{l} {\dot{\psi }=\left(\omega_{y_{\Sigma } } \cos \gamma -\omega 
-_{z_{\Sigma } } \sin \gamma \right)\sec \vartheta \, ;} \\ {\dot{\gamma }=\omega 
-_{x_{\Sigma } } +{\rm tg}\vartheta {\rm \; }\left(\omega_{z_{\Sigma } } \sin \gamma 
--\omega_{y_{\Sigma } } \cos \gamma \right)\, \, ;} \\ {\dot{\vartheta }=\omega_{y_{
-\Sigma } } \sin \gamma +\omega_{z_{\Sigma }} \cos \gamma \, .} \end{array}\] 
+\[\begin{array}{l} 
+{\dot{\psi }=(\omega_{y_{\Sigma } } \cos \gamma -\omega_{z_{\Sigma }} \sin \gamma)\sec \vartheta ;} \\ 
+{\dot{\gamma }=\omega_{x_{\Sigma } } +tg\vartheta (\omega_{z_{\Sigma } } \sin \gamma -\omega_{y_{\Sigma } } \cos \gamma );} \\ 
+{\dot{\vartheta }=\omega_{y_{\Sigma } } \sin \gamma +\omega_{z_{\Sigma }} \cos \gamma.} 
+\end{array}\] 
 
 У свою чергу 
 
-\[\begin{array}{l} {\omega_{y_{\Sigma } } =\omega_{y_{{\rm }} } -\omega_{y_{_{NHE} 
-} } ;} \\ {\omega_{x_{\Sigma } } =\omega_{x_{{\rm }} } -\omega_{x_{NHE} } ;} \\ 
-{\omega_{z_{\Sigma } } =\omega_{z_{{\rm }} } -\omega_{z_{NHE} } ,} \end{array}\] 
-
-де  $\omega 
-_{y_{{\rm }} } ,{\rm \; }\omega_{x_{{\rm }} } ,{\rm \; }\omega_{z_{{\rm }} } $$-$ проекції 
+\[
+  \begin{array}{l} 
+  {\omega_{y_{\Sigma } } =\omega_{y_{\text{ЛА}} } -\omega_{y_{_{NHE}}};} \\ 
+  {\omega_{x_{\Sigma } } =\omega_{x_{\text{ЛА}}}  -\omega_{x_{NHE}} ;} \\ 
+  {\omega_{z_{\Sigma } } =\omega_{z_{\text{ЛА}}}  -\omega_{z_{NHE}}.} \end{array}
+\] 
+\begin{ESKDexplanation}
+\item де $\omega_{y_{\text{ЛА}}}$,$\omega_{x_{\text{ЛА}}}$,$\omega_{z_{\text{ЛА}}}$ -- проекції 
 кутової швидкості ЛА відносно інерціального простору на осі зв'язаної системи координат, 
 вимірювані датчиками кутових швидкостей;
+\item $\omega_{y_{_{NHE}}}$,$\omega_{x_{_{NHE}}}$,$\omega_{z_{_{NHE}}}$  -- проекції кутової швидкості навігаційного тригранника 
+відносно інерціального простору на осі зв'язаної системи координат, які враховують 
+проекції кутової швидкості обертання Землі  $\Omega_{H}$,$\Omega_{E}$ ,$\Omega_{N}$
+і складові відносної кутової швидкості навігаційного тригранника, 
+що обумовлені рухом ЛА відносно Землі $\omega_{H_{V}}$ , $\omega_{E_{V}}$ ,
+$\omega_{N_{V}} $. 
 
+\end{ESKDexplanation}
 % \includegraphics[bb=0mm 0mm 208mm 296mm, width=36.3mm, height=6.6mm, viewport=3mm 
 % 4mm 205mm 292mm]{image1.eps} 
 
--- проекції кутової швидкості навігаційного тригранника 
-відносно інерціального простору на осі зв'язаної системи координат, які враховують 
-проекції кутової швидкості обертання Землі  $\Omega_{H} ,{\rm \; }\Omega_{E} ,{
-\rm \; }\Omega_{N} $  і складові відносної кутової швидкості навігаційного тригранника, 
-що обумовлені рухом ЛА відносно Землі $\omega_{H_{V} } ,{\rm \; }\omega_{E_{V} 
-} ,{\rm \; }\omega_{N_{V} } $. Ці проекції кутової швидкості визначаються в результаті 
+
+
+Ці проекції кутової швидкості визначаються в результаті 
 розв'язання матричного рівняння 
 
-\[\left[\begin{array}{c} {\omega_{x_{NHE} } } \\ {\omega_{y_{NHE} } } \\ {\omega 
-_{z_{NHE} } } \end{array}\right]=B^{{\rm B}} \left[\begin{array}{c} {\omega_{N_{V} 
-} +\Omega_{N} } \\ {\omega_{H_{V} } +\Omega_{H} } \\ {\omega_{E_{V} } +\Omega 
-_{E} } \end{array}\right] .\] 
+\[\left
+[\begin{array}{c} {\omega_{x_{NHE} } } \\ 
+{\omega_{y_{NHE} } } \\ 
+{\omega_{z_{NHE} } } 
+\end{array}\right]
+=B^{T} 
+\left[\begin{array}{c} {\omega_{N_{V} 
+} +\Omega_{N} } \\ 
+{\omega_{H_{V} } +\Omega_{H} } \\ 
+{\omega_{E_{V} } +\Omega_{E} } 
+\end{array}\right] .\] 
 
 Перевагою такого підходу до визначення кутів орієнтації ЛА (інтегруванням диференціальних 
 рівнянь, що описують швидкості зміни кутів Ейлера, а не за арктангенсами відношення 
-елементів матриці напрямних  косинусів) є відсутність обмежень у $\pm$90$\circ$, 
+елементів матриці напрямних  косинусів) є відсутність обмежень $\gamma$ $\pm90^{o}$, 
 що особливо важливо при визначенні курсу ЛА на віражах. 
 
 Тривимірні матриці напрямних  косинусів досить зручні для обчислень у бортовій ЦОМ. 
-Однак формування матриці \textit{В} з використанням тригонометричних функцій вимагає 
+Однак формування матриці \textbf{В} з використанням тригонометричних функцій вимагає 
 значних обчислювальних витрат. 
 
 Для визначення орієнтації ЛА можна використовувати не тільки напрямні косинуси, але 
@@ -453,195 +486,225 @@ _{E} } \end{array}\right] .\]
 до теореми Ейлера-Шаля усяке переміщення твердого тіла, яке має нерухому точку, можна 
 зобразити як результат повороту навколо незмінного напрямку (ейлерової осі) на певний 
 кут $\varphi $. Якщо зв'язати з розглянутим твердим тілом правий ортогональний координатний 
-тригранник, то параметри Родрига-Гамільтона $\lambda_{0} ,\lambda_{1} ,\lambda 
-_{2} ,\lambda_{3} ,$що однозначно характеризують згадані переміщення, можна задати 
+тригранник, то параметри Родрига-Гамільтона $\lambda_{0}$ ,$\lambda_{1}$, $\lambda_{2}$,
+$\lambda_{3}$ ,що однозначно характеризують згадані переміщення, можна задати 
 такими виразами: 
 
-\[\lambda_{1} =\frac{l_{1} \sin \varphi }{2} ;\, \, \, \, \, \, \lambda_{2} =\frac{l_{2} 
-\sin \varphi }{2} ;\, \, \lambda_{3} =\frac{l_{3} \sin \varphi }{2} ;\, \, \, \, 
-\, \lambda_{0} =\frac{\cos \varphi }{2} ,\] 
+\[
+  \lambda_{1} =\frac{l_{1} \sin \varphi }{2};
+  \lambda_{2} =\frac{l_{2} \sin \varphi }{2};
+  \lambda_{3} =\frac{l_{3} \sin \varphi }{2};
+  \lambda_{0} =\frac{\cos \varphi }{2} ,
+\] 
+\begin{ESKDexplanation}
+ \item де $l_{1} ,l_{2} ,l_{3} -$косинуси кутів, утворених ейлеровою віссю з осями тригранника 
+в його вихідному та кінцевому положенні. 
+\end{ESKDexplanation}
 
-де $l_{1} ,l_{2} ,l_{3} -$косинуси кутів, утворених ейлеровою віссю з осями тригранника 
-в його вихідному та кінцевому положенні. Зв'яжемо з ЛА, на якому встановлена БІНС, 
-ортонормований базис \textbf{Е} -- праву трійку взаємно ортогональних одиничних 
-векторів $e_{1} ,e_{2} ,e_{3} .$ Орієнтацію базису \textbf{Е} відносно ортонормованого 
-інерціального базису \textbf{І}, складеного з ортів $i_{1} ,i_{2} ,i_{3} ,$ охарактеризуємо 
-параметрами Родрига-Гамільтона $\lambda_{0} ,\lambda_{1} ,\lambda_{2} ,\lambda 
-_{3} .$ Матриця напрямних  косинусів, що обчислена за параметрами Родрига-Гамільтона 
+Зв'яжемо з ЛА, на якому встановлена БІНС, ортонормований базис \textbf{Е} -- 
+праву трійку взаємно ортогональних одиничних 
+векторів $e_{1}$ ,$e_{2}$ ,$e_{3}$. Орієнтацію базису \textbf{Е} відносно ортонормованого 
+інерціального базису \textbf{І}, складеного з ортів $i_{1}$ ,$i_{2}$ ,$i_{3}$ , охарактеризуємо 
+параметрами Родрига-Гамільтона $\lambda_{0}$ ,$\lambda_{1}$ ,$\lambda_{2}$ ,$\lambda 
+_{3}$. Матриця напрямних  косинусів, що обчислена за параметрами Родрига-Гамільтона 
 (кватерніонами), має такий вигляд:
 
-\[=\left|\, \, \begin{array}{ccc} {1-2(\lambda_{2}^{2} +\lambda_{3}^{2} )} & {2(
-\lambda_{1} \lambda_{2} -\lambda_{0} \lambda_{3} )} & {2(\lambda_{1} \lambda 
-_{3} +\lambda_{0} \lambda_{2} )} \\ {2(\lambda_{1} \lambda_{2} +\lambda_{0} 
-\lambda_{3} )} & {1-2(\lambda_{1}^{2} +\lambda_{3}^{2} )} & {2(\lambda_{2} \lambda 
-_{3} -\lambda_{0} \lambda_{1} )} \\ {2(\lambda_{1} \lambda_{3} -\lambda_{0} 
-\lambda_{2} )} & {2(\lambda_{2} \lambda_{3} +\lambda_{0} \lambda_{1} )} & {1-2(
-\lambda_{1}^{2} +\lambda_{2}^{2} )} \end{array}\, \, \right| .\] 
+\[B=\left|
+\begin{array}{ccc} {1-2(\lambda_{2}^{2} +\lambda_{3}^{2} )} & 
+{2(\lambda_{1} \lambda_{2} -\lambda_{0} \lambda_{3} )} & 
+{2(\lambda_{1} \lambda_{3} +\lambda_{0} \lambda_{2} )} \\ 
+{2(\lambda_{1} \lambda_{2} +\lambda_{0} \lambda_{3} )} & 
+{1-2(\lambda_{1}^{2} +\lambda_{3}^{2} )} & 
+{2(\lambda_{2} \lambda_{3} -\lambda_{0} \lambda_{1} )} \\ 
+{2(\lambda_{1} \lambda_{3} -\lambda_{0} \lambda_{2} )} & 
+{2(\lambda_{2} \lambda_{3} +\lambda_{0} \lambda_{1} )} & 
+{1-2(\lambda_{1}^{2} +\lambda_{2}^{2} )} \end{array}\right|.\] 
 
-Вимірники кутової швидкості, що входять до складу БІНС, вимірюють координати $\omega 
-_{x} ,\omega_{y} ,\omega_{z} $ вектора $\bar{\Omega }$ абсолютної кутової швидкості 
+Вимірники кутової швидкості, що входять до складу БІНС, вимірюють координати 
+$\omega_{x}$, $\omega_{y}$, $\omega_{z}$ вектора $\bar{\Omega }$ абсолютної кутової швидкості 
 базису \textbf{Е}, що задані в цьому базисі. Необхідно, знаючи значення параметрів 
 Родрига-Гамільтона в момент часу $t=t_{0} $ і використовуючи сигнали вимірників кутової 
 швидкості, обчислювати параметри Родрига-Гамільтона при $t>t_{0} $. У початковий 
 момент часу за інформацією про кути крену тангажа і курсу можна розрахувати вихідні 
 значення параметрів Родрига-Гамільтона: 
-
-\[\begin{array}{l} {\lambda_{0_{{\rm 0}} } =\sin \, \left({\gamma_{0}  \mathord{
+\[\begin{array}{l} 
+{\lambda_{0_{0} } =\sin  \left({\gamma_{0}  \mathord{
 \left/{\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin 
-\, \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-
-\nulldelimiterspace} 2} \right)\sin \, \left({\psi_{0}  \mathord{\left/{\vphantom{
-\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)+\cos \, \left({\gamma 
+ \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-
+\nulldelimiterspace} 2} \right)\sin  \left({\psi_{0}  \mathord{\left/{\vphantom{
+\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)+\cos  \left({\gamma 
 _{0}  \mathord{\left/{\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 
-2} \right)\cos \, \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  
-2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos \, \left({\psi_{0}  \mathord{
+2} \right)\cos  \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  
+2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos  \left({\psi_{0}  \mathord{
 \left/{\vphantom{\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right);} \\ 
-{\lambda_{1_{{\rm 0}} } =-\sin \, \left({\vartheta_{0}  \mathord{\left/{\vphantom{
-\vartheta_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin \, \left({\psi 
+
+{\lambda_{1_{0} } =-\sin  \left({\vartheta_{0}  \mathord{\left/{\vphantom{
+\vartheta_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin  \left({\psi 
 _{0}  \mathord{\left/{\vphantom{\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} 
-\right)\cos \, \left({\gamma_{0}  \mathord{\left/{\vphantom{\gamma_{0}  2}}\right.
+\right)\cos  \left({\gamma_{0}  \mathord{\left/{\vphantom{\gamma_{0}  2}}\right.
 \kern-\nulldelimiterspace} 2} \right)+\sin \left({\gamma_{0}  \mathord{\left/{\vphantom{
-\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos \, \left({\vartheta 
+\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos  \left({\vartheta 
 _{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-\nulldelimiterspace} 
-2} \right)\cos \, \left({\psi_{0}  \mathord{\left/{\vphantom{\psi_{0}  2}}\right.
-\kern-\nulldelimiterspace} 2} \right);} \\ {\lambda_{2_{{\rm 0}} } =\sin \left({
+2} \right)\cos  \left({\psi_{0}  \mathord{\left/{\vphantom{\psi_{0}  2}}\right.
+\kern-\nulldelimiterspace} 2} \right);} \\ 
+
+{\lambda_{2_{0} } =\sin \left({
 \gamma_{0}  \mathord{\left/{\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 
-2} \right)\cos \, \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  
-2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin \, \left({\psi_{0}  \mathord{
+2} \right)\cos  \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  
+2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin  \left({\psi_{0}  \mathord{
 \left/{\vphantom{\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)+\sin 
-\, \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-
-\nulldelimiterspace} 2} \right)\cos \, \left({\gamma_{0}  \mathord{\left/{\vphantom{
-\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos \, \left({\psi_{0}  
-\mathord{\left/{\vphantom{\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right);} 
-\\ {\lambda_{3_{{\rm 0}} } =\sin \, \left({\psi_{0}  \mathord{\left/{\vphantom{
-\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos \, \left({\gamma_{0}  
+ \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-
+\nulldelimiterspace} 2} \right)\cos  \left({\gamma_{0}  \mathord{\left/{\vphantom{
+\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos  \left({\psi_{0}  
+\mathord{\left/{\vphantom{\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right);}\\ 
+
+{\lambda_{3_{0} } =\sin  \left({\psi_{0}  \mathord{\left/{\vphantom{
+\psi_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\cos  \left({\gamma_{0}  
 \mathord{\left/{\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)
-\cos \, \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.
-\kern-\nulldelimiterspace} 2} \right)-\sin \, \left({\gamma_{0}  \mathord{\left/{
-\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin \, \left({
+\cos  \left({\vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.
+\kern-\nulldelimiterspace} 2} \right)-\sin  \left({\gamma_{0}  \mathord{\left/{
+\vphantom{\gamma_{0}  2}}\right.\kern-\nulldelimiterspace} 2} \right)\sin  \left({
 \vartheta_{0}  \mathord{\left/{\vphantom{\vartheta_{0}  2}}\right.\kern-\nulldelimiterspace} 
-2} \right)\cos \, \left({\psi_{0}  \mathord{\left/{\vphantom{\psi_{0}  2}}\right.
+2} \right)\cos  \left({\psi_{0}  \mathord{\left/{\vphantom{\psi_{0}  2}}\right.
 \kern-\nulldelimiterspace} 2} \right).} \end{array}\] 
 
-Поточні значення параметрів $\lambda_{0} ,\lambda_{1} ,\lambda_{2} ,\lambda_{3} $ можна 
-визначити, знаючи проекції кутової швидкості ЛА $\omega_{x} ,\omega_{y} ,\omega 
-_{z} $ на зв'язаній осі $XYZ$, шляхом розв'язання лінійного диференціального рівняння 
-зі змінними коефіцієнтами. У цьому випадку параметри $\lambda_{0} ,\lambda_{1} 
-,\lambda_{2} ,\lambda_{3} $ кватерніона  описують  положення  осей ЛА  $XYZ$  відносно  
+Поточні значення параметрів $\lambda_{0}$ ,$\lambda_{1}$ ,$\lambda_{2}$ ,$\lambda_{3}$ можна 
+визначити, знаючи проекції кутової швидкості ЛА $\omega_{x}$ ,$\omega_{y}$ ,$\omega_{z}$ 
+на зв'язаній осі $XYZ$, шляхом розв'язання лінійного диференціального рівняння 
+зі змінними коефіцієнтами. У цьому випадку параметри $\lambda_{0}$ ,$\lambda_{1}$ 
+,$\lambda_{2}$ ,$\lambda_{3}$ кватерніона  описують  положення  осей ЛА  $XYZ$  відносно  
 інерціального простору:
 
-\[\dot{\lambda }=\frac{1}{2} \Omega \left(t\right)\cdot \lambda \left(t\right)\, 
-\, ,\] 
-
-де $\Omega \left(t\right)$$-$ кососиметрична $\left(4\times 4\right)$-матриця, яка 
-відповідає вектору $\omega =\omega_{x} \omega_{y} \omega_{z}  $
-
-\[\Omega \left(t\right)=\left[\begin{array}{cccc} {0} & {-\omega_{x} } & {-\omega 
-_{y} } & {-\omega_{z} } \\ {\omega_{x} } & {0} & {\omega_{z} } & {-\omega_{y} 
-} \\ {\omega_{y} } & {-\omega_{z} } & {0} & {\omega_{x} } \\ {\omega_{z} } & 
-{\omega_{y} } & {-\omega_{x} } & {0} \end{array}\right];\lambda =\left[\begin{array}{c} 
-{\lambda_{0} } \\ {\lambda_{1} } \\ {\lambda_{2} } \\ {\lambda_{3} } \end{array}
+\[\dot{\lambda }=\frac{1}{2} \Omega(t)\cdot \lambda(t)\] 
+\begin{ESKDexplanation}
+\item де $\Omega(t)$ -- кососиметрична $(4\times 4)$-матриця, яка 
+відповідає вектору $\omega =[\omega_{x} \omega_{y} \omega_{z}]^{T}  $
+\end{ESKDexplanation}
+\[\Omega (t)=\left[
+\begin{array}{cccc} 
+  {0} & {-\omega_{x}} & {-\omega_{y}} & {-\omega_{z}} \\ 
+  {\omega_{x}} & {0} & {\omega_{z} } & {-\omega_{y}} \\ 
+  {\omega_{y}} & {-\omega_{z}} & {0} & {\omega_{x}} \\ 
+  {\omega_{z}} & {\omega_{y}} & {-\omega_{x}} & {0} 
+\end{array}\right];
+\lambda =\left[\begin{array}{c} 
+  {\lambda_{0} } \\ 
+  {\lambda_{1} } \\ 
+  {\lambda_{2} } \\ 
+  {\lambda_{3} } 
+\end{array}
 \right].\] 
 
 Цей вираз є кватерніонним однорідним лінійним диференціальним рівнянням першого порядку 
 зі змінним коефіцієнтом у вигляді гіперкомплексного числа з дійсною частиною, що 
 дорівнює нулю. У скалярній формі це рівняння  має такий вигляд:
 
-\[\begin{array}{l} {\dot{\lambda }_{0} =-0,5\, \, \left(\omega_{x} \lambda_{1} 
-+\omega_{y} \lambda_{2} +\omega_{z} \lambda_{3} \right);} \\ {\dot{\lambda }_{1} 
-=-0,5\, \, \left(\omega_{x} \lambda_{0} +\omega_{z} \lambda_{2} +\omega_{y} 
-\lambda_{3} \right);} \\ {\dot{\lambda }_{2} =-0,5\, \, \left(\omega_{y} \lambda 
-_{0} +\omega_{z} \lambda_{1} +\omega_{x} \lambda_{3} \right);} \\ {\dot{\lambda 
-}_{3} =-0,5\, \, \left(\omega_{z} \lambda_{0} +\omega_{y} \lambda_{1} +\omega 
-_{x} \lambda_{2} \right).} \end{array}\] 
+\[\begin{array}{l} 
+{\dot{\lambda}_{0} =-0,5(\omega_{x} \lambda_{1} +\omega_{y} \lambda_{2} +\omega_{z} \lambda_{3} ;} \\ 
+{\dot{\lambda}_{1} =-0,5(\omega_{x} \lambda_{0} +\omega_{z} \lambda_{2} +\omega_{y} \lambda_{3});} \\ 
+{\dot{\lambda}_{2} =-0,5(\omega_{y} \lambda_{0} +\omega_{z} \lambda_{1} +\omega_{x} \lambda_{3});} \\ 
+{\dot{\lambda}_{3} =-0,5(\omega_{z} \lambda_{0} +\omega_{y} \lambda_{1} +\omega_{x} \lambda_{2}).}
+\end{array}\] 
 
 Динаміка зміни параметрів кватерніона у випадку, коли кватерніон характеризує взаємне 
 положення зв'язаних з ЛА осей $XYZ$ і обертових навігаційних осей \textit{NHE}, описується 
 рівняннями
-
-$\left[\begin{array}{c} {\dot{\lambda }_{0} } \\ {\dot{\lambda }_{1} } \\ {\dot{
-\lambda }_{2} } \\ {\dot{\lambda }_{3} } \end{array}\right]=\frac{1}{2} \left[\begin{array}{cccc} 
+\begin{equation}
+ \left[\begin{array}{c} 
+{\dot{\lambda }_{0} } \\ 
+{\dot{\lambda }_{1} } \\ 
+{\dot{\lambda }_{2} } \\ 
+{\dot{\lambda }_{3} } 
+\end{array}\right]=\frac{1}{2} \left[\begin{array}{cccc}
 {0} & {-\omega_{x\Sigma } } & {-\omega_{y\Sigma } } & {-\omega_{z\Sigma } } \\ 
-{\omega_{x\Sigma } } & {0} & {\omega_{z\Sigma } } & {-\omega_{y\Sigma } } \\ {
-\omega_{y\Sigma } } & {-\omega_{z\Sigma } } & {0} & {\omega_{x\Sigma } } \\ {
-\omega_{z\Sigma } } & {\omega_{y\Sigma } } & {-\omega_{x\Sigma } } & {0} \end{array}
-\right]\cdot \left[\begin{array}{c} {\lambda_{0} } \\ {\lambda_{1} } \\ {\lambda 
-_{2} } \\ {\lambda_{3} } \end{array}\right]$.       \eqref{eq:__8_18_}
+{\omega_{x\Sigma } } & {0} & {\omega_{z\Sigma } } & {-\omega_{y\Sigma } } \\ 
+{\omega_{y\Sigma } } & {-\omega_{z\Sigma } } & {0} & {\omega_{x\Sigma } } \\ 
+{\omega_{z\Sigma } } & {\omega_{y\Sigma } } & {-\omega_{x\Sigma } } & {0} 
+\end{array}
+\right]\cdot 
+\left[\begin{array}{c} 
+{\lambda_{0} } \\ {\lambda_{1} } \\ {\lambda_{2} } \\ {\lambda_{3} } 
+\end{array}\right] 
+\label{eq:qdiff}
+\end{equation}
 
-У свою чергу  
+\begin{ESKDexplanation}
+ \item У свою чергу  
 
-\[\, \omega_{x_{\Sigma } } =\omega_{x_{{\rm }} } -\omega_{x_{NHE} } ;\, \, \omega 
-_{y_{\Sigma } } =\omega_{y_{{\rm }} } -\omega_{y_{NHE} } ;\, \, \omega_{z_{\Sigma 
-} } =\omega_{z_{{\rm }} } -\omega_{z_{NHE} } ,\] 
+\[\omega_{x_{\Sigma } } =\omega_{x_{\text{ЛА}} } -\omega_{x_{NHE} } ;  \omega 
+_{y_{\Sigma } } =\omega_{y_{\text{ЛА}} } -\omega_{y_{NHE} } ;  \omega_{z_{\Sigma 
+} } =\omega_{z_{\text{ЛА}} } -\omega_{z_{NHE} } ,\] 
 
-де  $\omega_{y_{{\rm }} } ,{\rm \; }\omega_{x_{{\rm }} } ,{\rm \; }\omega_{z_{{
-\rm }} } $$-$ проекції кутової швидкості ЛА відносно інерціального простору на осі 
+де  $\omega_{y_{\text{ЛА}}}$, $\omega_{x_{\text{ЛА}}}$, $\omega_{z_{\text{ЛА}}}$ --
+проекції кутової швидкості ЛА відносно інерціального простору на осі 
 зв'язаної системи координат, вимірювані датчиками кутових швидкостей;
 
-$\omega_{x_{NHE} } ,\omega_{y_{NHE} } ,\omega_{z_{NHE} } $ -- проекції кутової 
+ \item $\omega_{x_{NHE}} ,\omega_{y_{NHE}} ,\omega_{z_{NHE}} $ -- проекції кутової 
 швидкості навігаційної системи координат відносно інерціального простору на осі зв'язаної 
 системи координат, що визначаються в результаті розв'язання матричного рівняння 
-
 \[\left[
-\begin{array}{c} {\omega_{x_{NHE} } } \\ {\omega_{y_{NHE} } } \\ {\omega_{z_{NHE} 
-} } \end{array}\right]=B^{{\rm B}} \left[\begin{array}{c} {\omega_{N_{V} } +\Omega 
-_{N} } \\ {\omega_{H_{V} } +\Omega_{H} } \\ {\omega_{E_{V} } +\Omega_{E} } \end{array}
-\right].\] 
-
+\begin{array}{c} 
+{\omega_{x_{NHE}} } \\ 
+{\omega_{y_{NHE}} } \\ 
+{\omega_{z_{NHE} }} 
+\end{array}\right]=B^{T} 
+\left[\begin{array}{c} 
+{\omega_{N_{V}} +\Omega_{N}} \\ 
+{\omega_{H_{V}} +\Omega_{H}} \\ 
+{\omega_{E_{V}} +\Omega_{E}} 
+\end{array}\right].\] 
+\end{ESKDexplanation}
 Ці складові розраховуються й у раніше розглянутих алгоритмах.
 
 
-У скалярній формі рівняння \eqref{eq:__8_18_} мають вигляд:
-
-\[\begin{array}{l} {\dot{\lambda }_{0} =-0,5(\omega_{x\Sigma } \lambda_{1} +\omega 
-_{y\Sigma } \lambda_{2} +\omega_{z\Sigma } \lambda_{3} );} \\ {\dot{\lambda }_{1} 
-=-0,5(\omega_{x\Sigma } \lambda_{0} +\omega_{z\Sigma } \lambda_{2} +\omega_{y
-\Sigma } \lambda_{3} );} \\ {\dot{\lambda }_{2} =-0,5(\omega_{y\Sigma } \lambda 
-_{0} +\omega_{z\Sigma } \lambda_{1} +\omega_{x\Sigma } \lambda_{3} );} \\ {\dot{
-\lambda }_{3} =-0,5(\omega_{z\Sigma } \lambda_{0} +\omega_{y\Sigma } \lambda_{1} 
-+\omega_{x\Sigma } \lambda_{2} ).} \end{array}\] 
-
+У скалярній формі рівняння \eqref{eq:qdiff} мають вигляд:
+\[\begin{array}{l} 
+{\dot{\lambda }_{0} =-0,5(\omega_{x\Sigma } \lambda_{1} +\omega_{y\Sigma } \lambda_{2} +\omega_{z\Sigma } \lambda_{3} );} \\ 
+{\dot{\lambda }_{1} =-0,5(\omega_{x\Sigma } \lambda_{0} +\omega_{z\Sigma } \lambda_{2} +\omega_{y\Sigma } \lambda_{3} );} \\ 
+{\dot{\lambda }_{2} =-0,5(\omega_{y\Sigma } \lambda_{0} +\omega_{z\Sigma } \lambda_{1} +\omega_{x\Sigma } \lambda_{3} );} \\ 
+{\dot{\lambda }_{3} =-0,5(\omega_{z\Sigma } \lambda_{0} +\omega_{y\Sigma } \lambda_{1} +\omega_{x\Sigma } \lambda_{2} ).} 
+\end{array}\] 
 Матрицю \textit{В} перерахування зі зв'язаної в географічну систему координат можна 
 також отримати шляхом перемножування двох матриць, з яких одна перераховує зі зв'язаних 
 у інерціальні осі, друга -- з інерціальних у географічні. Кожна з двох матриць також 
 обчислюється на основі параметрів Родрига-Гамільтона, які у свою чергу визначаються 
 чисельним алгоритмом другого порядку, побудованим на основі методу послідовних наближень  
 Пікара:
+\[B=C^{T}A\]
 
-\begin{equation} \label{eq:__8_19_} \begin{array}{l} {=!^{{\rm T}} A;} \\ {A=
-\left|\, \, \begin{array}{ccc} {1-2(\lambda_{2}^{2} +\lambda_{3}^{2} )} & {2(\lambda 
-_{1} \lambda_{2} -\lambda_{0} \lambda_{3} )} & {2(\lambda_{1} \lambda_{3} +
-\lambda_{0} \lambda_{2} )} \\ {2(\lambda_{1} \lambda_{2} +\lambda_{0} \lambda 
-_{3} )} & {1-2(\lambda_{1}^{2} +\lambda_{3}^{2} )} & {2(\lambda_{2} \lambda_{3} 
--\lambda_{0} \lambda_{1} )} \\ {2(\lambda_{1} \lambda_{3} -\lambda_{0} \lambda 
-_{2} )} & {2(\lambda_{2} \lambda_{3} +\lambda_{0} \lambda_{1} )} & {1-2(\lambda 
-_{1}^{2} +\lambda_{2}^{2} )} \end{array}\, \, \right|\, ;} \\ {} \\ {\lambda_{0}^{(k+1)} 
-=\lambda_{0}^{(k)} -\lambda_{0}^{(k)} {e \mathord{\left/{\vphantom{e 8}}\right.
-\kern-\nulldelimiterspace} 8} -0,5\left(\lambda_{1}^{(k)} \Delta \beta_{x} +\lambda 
-_{2}^{(k)} \Delta \beta_{y} +\lambda_{3}^{(k)} \Delta \beta_{z} \right)\, \, ;} 
-\\ {\lambda_{1}^{(k+1)} =\lambda_{1}^{(k)} -\lambda_{1}^{(k)} {e \mathord{\left/{
-\vphantom{e 8}}\right.\kern-\nulldelimiterspace} 8} -0,5\left(\lambda_{0}^{(k)} 
-\Delta \beta_{x} +\lambda_{3}^{(k)} \Delta \beta_{y} +\lambda_{2}^{(k)} \Delta 
-\beta_{z} \right)\, \, ;} \\ {\lambda_{2}^{(k+1)} =\lambda_{2}^{(k)} -\lambda 
-_{2}^{(k)} {e \mathord{\left/{\vphantom{e 8}}\right.\kern-\nulldelimiterspace} 8} 
--0,5\left(\lambda_{3}^{(k)} \Delta \beta_{x} +\lambda_{0}^{(k)} \Delta \beta_{y} 
-+\lambda_{1}^{(k)} \Delta \beta_{z} \right)\, \, ;} \\ {\lambda_{3}^{(k+1)} =
-\lambda_{3}^{(k)} -\lambda_{3}^{(k)} {e \mathord{\left/{\vphantom{e 8}}\right.
-\kern-\nulldelimiterspace} 8} -0,5\left(\lambda_{2}^{(k)} \Delta \beta_{x} +\lambda 
-_{1}^{(k)} \Delta \beta_{y} +\lambda_{0}^{(k)} \Delta \beta_{z} \right)\, \, ,} 
-\end{array} \end{equation} 
+\[A=\left| \begin{array}{ccc} 
+{1-2(\lambda_{2}^{2} +\lambda_{3}^{2} )} & {2(\lambda_{1} \lambda_{2}-\lambda_{0} \lambda_{3})} & {2(\lambda_{1} \lambda_{3} +\lambda_{0}\lambda_{2} )} \\ 
+{2(\lambda_{1} \lambda_{2} +\lambda_{0} \lambda_{3} )} & {1-2(\lambda_{1}^{2} +\lambda_{3}^{2} )} & {2(\lambda_{2} \lambda_{3} -\lambda_{0}\lambda_{1})} \\ 
+{2(\lambda_{1} \lambda_{3} -\lambda_{0} \lambda_{2} )} & {2(\lambda_{2} \lambda_{3} +\lambda_{0} \lambda_{1} )} & {1-2(\lambda_{1}^{2} +\lambda_{2}^{2})} 
+\end{array}  \right|;\]
 
- де   $e=\Delta \beta_{x}^{2} +\Delta \beta_{y}^{2} +\Delta \beta_{z}^{2} ;$
 
-\[\Delta \beta_{x} =\int_{t_{k} }^{t_{k} +1}\omega_{x_{{\rm }} } dt ;\, \, \, 
-\, \Delta \beta_{y} =\int_{t_{k} }^{t_{k} +1}\omega_{y_{{\rm }} } dt ;\, \, \, 
-\, \, \Delta \beta_{z} =\int_{t_{k} }^{t_{k} +1}\omega_{z_{{\rm }} } dt ;\] 
+\begin{equation}
+\label{eq:qcalc} 
+\begin{array}{cccc} 
+{\lambda_{0}^{(k+1)}=\lambda_{0}^{(k)} -\lambda_{0}^{(k)} {e \mathord{/{\vphantom{e 8}}.\kern-\nulldelimiterspace} 8} 
+-0,5(\lambda_{1}^{(k)} \Delta \beta_{x} +\lambda_{2}^{(k)} \Delta \beta_{y} +\lambda_{3}^{(k)} \Delta \beta_{z});}\\ 
+{\lambda_{1}^{(k+1)} =\lambda_{1}^{(k)} -\lambda_{1}^{(k)} {e \mathord{/{\vphantom{e 8}}.\kern-\nulldelimiterspace} 8}
+-0,5(\lambda_{0}^{(k)}\Delta \beta_{x} +\lambda_{3}^{(k)} \Delta \beta_{y} +\lambda_{2}^{(k)} \Delta\beta_{z});} \\ 
+{\lambda_{2}^{(k+1)} =\lambda_{2}^{(k)} -\lambda_{2}^{(k)} {e \mathord{/{\vphantom{e 8}}.\kern-\nulldelimiterspace} 8} 
+-0,5(\lambda_{3}^{(k)} \Delta \beta_{x} +\lambda_{0}^{(k)} \Delta \beta_{y}+\lambda_{1}^{(k)} \Delta \beta_{z} )  ;} \\ 
+{\lambda_{3}^{(k+1)} =\lambda_{3}^{(k)} -\lambda_{3}^{(k)} {e \mathord{/{\vphantom{e 8}}.\kern-\nulldelimiterspace} 8} 
+-0,5(\lambda_{2}^{(k)} \Delta \beta_{x} +\lambda_{1}^{(k)} \Delta \beta_{y} +\lambda_{0}^{(k)} \Delta \beta_{z} )  ,} 
+\end{array} 
+\end{equation}
 
-$\Delta $$\beta $\textit{x}, $\Delta $$\beta $\textit{y}, $\Delta $$\beta $\textit{z }-- збільшення 
+\begin{ESKDexplanation}
+\item де   $e=\Delta \beta_{x}^{2} +\Delta \beta_{y}^{2} +\Delta \beta_{z}^{2} ;$
+\[\Delta \beta_{x} =\int_{t_{k} }^{t_{k} +1}\omega_{x_{\text{ЛА}} } dt ;   
+ \Delta \beta_{y} =\int_{t_{k} }^{t_{k} +1}\omega_{y_{\text{ЛА}} } dt ;   
+ \Delta \beta_{z} =\int_{t_{k} }^{t_{k} +1}\omega_{z_{\text{ЛА}} } dt ;\] 
+
+\item $\Delta $$\beta $\textit{x}, $\Delta $$\beta $\textit{y}, $\Delta $$\beta $\textit{z }-- збільшення 
 інтегралів від проекцій абсолютної кутової швидкості ЛА на осі чутливості гіроскопів 
 (показання датчиків кутової швидкості БІНС, які вимірюють не проекції кутових швидкостей, 
 а збільшення кутів повороту навколо своїх осей чутливості, тобто показання інтегруючих 
 датчиків кутової швидкості):
-
+\end{ESKDexplanation}
 \[!=\left|\, \, \begin{array}{ccc} {1-2(\mu_{2}^{2} +\mu_{3}^{2} )} & {2(\mu_{1} 
 \mu_{2} -\mu_{0} \mu_{3} )} & {2(\mu_{1} \mu_{3} +\mu_{0} \mu_{2} )} \\ {2(
 \mu_{1} \mu_{2} +\mu_{0} \mu_{3} )} & {1-2(\mu_{1}^{2} +\mu_{3}^{2} )} & {2(
@@ -665,14 +728,14 @@ _{x} +\mu_{2}^{(k)} \Omega_{y} +\mu_{3}^{(k)} \Omega_{z} \right)\, dt\, \, ;}
 кутової швидкості географічного базису на його осі .
 
 До переваг цього методу побудови матриці орієнтації відноситься гарантована ортогональність 
-матриці орієнтації, обчисленої за співвідношеннями \eqref{eq:__8_19_}. Крім цього, 
+матриці орієнтації, обчисленої за співвідношеннями \eqref{eq:qcalc}. Крім цього, 
 практика показує, що обчислення з використанням параметрів Родрига-Гамільтона дає 
 найменші обчислювальні витрати в порівнянні з іншими методами за умови забезпечення 
 однакових точностних характеристик. Разом з тим, визначення матриці \textit{В }через 
 параметри Родрига-Гамільтона призводить до необхідності рішення двох однотипних систем 
 лінійних диференціальних рівнянь четвертого порядку кожна.
 
-За елементами матриці  \textit{B} відповідно до \eqref{eq:__8_17_} визначаються 
+За елементами матриці  \textit{B} відповідно до \eqref{eq:angels} визначаються 
 кути орієнтації ЛА:  крен $\gamma $, тангаж $\vartheta$ та рискання (курс) $\psi $: 
 
 Після знаходження матриці \textit{В} система рівнянь для проведення навігаційних 
@@ -690,9 +753,9 @@ _{x} +\mu_{2}^{(k)} \Omega_{y} +\mu_{3}^{(k)} \Omega_{z} \right)\, dt\, \, ;}
 \textbf{Швидкий темп}
 
 \begin{equation} \label{eq:__8_20_} \begin{array}{l} {\omega_{y_{\Sigma } } 
-=\omega_{y_{{\rm }} } -\omega_{y_{_{NHE} } } ;\, } \\ {\, \omega_{x_{\Sigma } 
-} =\omega_{x_{{\rm }} } -\omega_{x_{NHE} } ;\, } \\ {\, \omega_{z_{\Sigma } } 
-=\omega_{z_{{\rm }} } -\omega_{z_{NHE} } .} \end{array} \end{equation} 
+=\omega_{y_{\text{ЛА}} } -\omega_{y_{_{NHE} } } ;\, } \\ {\, \omega_{x_{\Sigma } 
+} =\omega_{x_{\text{ЛА}} } -\omega_{x_{NHE} } ;\, } \\ {\, \omega_{z_{\Sigma } } 
+=\omega_{z_{\text{ЛА}} } -\omega_{z_{NHE} } .} \end{array} \end{equation} 
 
 
 
@@ -717,7 +780,7 @@ $B=\left[\begin{array}{ccc} {\cos \psi \cos \vartheta } & {\sin \psi \sin
 \textbf{Середній темп}
 
 $\left[\begin{array}{c} {0_{N} } \\ {0_{H} } \\ {0_{E} } \end{array}\right]=
-\left[\begin{array}{c} {0_{x_{{\rm }} } } \\ {0_{y_{{\rm }} } } \\ {0_{z_{{\rm }} 
+\left[\begin{array}{c} {0_{x_{\text{ЛА}} } } \\ {0_{y_{\text{ЛА}} } } \\ {0_{z_{\text{ЛА}} 
 } } \end{array}\right]$.                                                    \eqref{eq:__8_23_} 
 
 
