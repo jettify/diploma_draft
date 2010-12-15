@@ -6,3 +6,10 @@ _site
 *.toc
 *.backup
 *.nlo
+*.dvi
+*.nls
+*.swp
+*.ilg
+
+zzz.pdf
+
