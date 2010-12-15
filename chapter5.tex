@@ -589,16 +589,66 @@ $\eta_{Rlc,k}$ ,  $\eta_{\delta Rlc,k}$  (l=E,N),  $\eta_{Hc,k}$
 інформації для розглянутого складу навігаційних підсистем рекомендується використовувати 
 розширений вектор стану, що включає 22 компоненти, у тому числі: 15 компонент -- помилки 
 нанотехнологічної БІНС, одна -- систематична помилка БВ, 6 компонент -- корельовані 
-помилки СНС у визначенні координат і проекцій швидкості:
+помилки СНС у визначенні координат і проекцій швидкості:\\
 
-\begin{equation}\label{eq:state_vector}\begin{array}{l} 
-{\bar{X}=(\Delta R_{E} ,\Delta R_{N} ,\Delta h,\Delta V_{E} ,\Delta V_{N} ,\Delta V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,
-\varepsilon_{c1} ,\varepsilon_{c2} ,\varepsilon_{c3} , \Delta a_{c1} ,} \\ 
-{ \Delta a_{c2} ,\Delta a_{c3} ,\Delta h_{\text{БВ}} ,\Delta R_{Ec} ,\Delta R_{Nc} ,\Delta h_{c} ,\Delta V_{Ec} ,\Delta V_{Nc} ,\Delta V_{hc} )^{T} } 
-\end{array}\end{equation}
+\begin{equation}
+\label{eq:state_vector}
+% \begin{array}{l} 
+% {\bar{X}=(\Delta R_{E} ,\Delta R_{N} ,\Delta h,\Delta V_{E} ,\Delta V_{N} ,\Delta V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,
+% \varepsilon_{c1} ,\varepsilon_{c2} ,\varepsilon_{c3} , \Delta a_{c1} ,} \\ 
+% { \Delta a_{c2} ,\Delta a_{c3} ,\Delta h_{\text{БВ}} ,\Delta R_{Ec} ,\Delta R_{Nc} ,\Delta h_{c} ,\Delta V_{Ec} ,\Delta V_{Nc} ,\Delta V_{hc} )^{T} }
+\bar{X}= \left[ \begin{array}{l}
+{\Delta R_{E}}\\
+{\Delta R_{N}}\\
+{\Delta h}\\
+{\Delta V_{E}}\\
+{\Delta V_{N}}\\
+{\Delta V_{h}}\\
+{\alpha_{E}}\\
+{\alpha_{N}}\\
+{\alpha_{h}}\\
+{\varepsilon_{c1}}\\
+{\varepsilon_{c2}}\\
+{\varepsilon_{c3}}\\
+{\Delta a_{c1}} \\
+{ \Delta a_{c2}}\\
+{\Delta a_{c3}}\\
+{\Delta h_{\text{БВ}}}\\
+{\Delta R_{Ec}}\\
+{\Delta R_{Nc}}\\
+{\Delta h_{c}}\\
+{\Delta V_{Ec}}\\
+{\Delta V_{Nc}}\\
+{\Delta V_{hc}}
+\end{array} \right]=
+\left[\begin{array}{l}
+{\text{Помилка приведеної координати Схід}}\\
+{\text{Помилка приведеної координати Північ}}\\
+{\text{Помилка по висоті}}\\
+{\text{Помилка по швидкості Схід}}\\
+{\text{Помилка по швидкості Північ}}\\
+{\text{Помилка по вертикальної швидкості}}\\
+{\text{Помилка моделювання георафіч. тригранника Схід}}\\
+{\text{Помилка моделювання георафіч. тригранника Північ}}\\
+{\text{Помилка моделювання георафіч. тригранника Висота}}\\
+{\text{Дрейф гіроскопа Схід}}\\
+{\text{Дрейф гіроскопа Північ}}\\
+{\text{Дрейф гіроскопа висота}}\\
+{\text{Дрейф акселерометра Схід}} \\
+{\text{Дрейф акселерометра Північ}}\\
+{\text{Дрейф акселерометра по висоті}}\\
+{\text{Помилка баровисотоміра}}\\
+{\text{Корельована помилка координати СНС Схід}}\\
+{\text{Корельована помилка координати СНС Північ}}\\
+{\text{Корельована помилка координати СНС по висоті}}\\
+{\text{Корельована помилка швидкості СНС Схід}}\\
+{\text{Корельована помилка швидкості СНС Північ}}\\
+{\text{Корельована помилка швидкості СНС по висоті}}\\
+\end{array} \right]  
+\end{equation}
 
-Дискретна 
-модель еволюції вектора стану $\bar{X}_{p} $, що отримується на основі \eqref{eq:ba_discrete}, 
+Дискретна модель еволюції вектора стану $\bar{X}_{p} $, що отримується 
+на основі \eqref{eq:ba_discrete}, 
 \eqref{eq:dasdins}, \eqref{eq:sns_errors}, має вигляд:
 
 \begin{equation}
