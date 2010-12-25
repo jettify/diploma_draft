@@ -1,0 +1,6 @@
+TODO list about my diploma
+
+Introduction should be 2 pages long.
+Add transfer sentences between sections and subsections 
+Fix sensors
+Choose kalman filter
