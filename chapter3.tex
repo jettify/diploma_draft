@@ -226,7 +226,7 @@ $\Delta V_{N}(t)$,$\Delta V_{h}(t)$, також може бути отриман
 в БІНС орієнтації географічного координатного тригранника ($\alpha_{E} $;
 \item $\alpha_{N} $-- похибки побудови вертикалі, $\alpha_{H} $-- азимутальна похибка); 
 \item $R=R_{\text{З}} +H$ -- поточна висота; 
-\item $U(t)=2\Omega_{\text{З}} +\dot{\lambda }(t)$; $dot{\varphi}(t)=\frac{V_{N}}{R}$; $\dot{\lambda }(t)=\frac{V_{E}}{R\cos \varphi }.$ 
+\item $U(t)=2\Omega_{\text{З}} +\dot{\lambda }(t)$; $\dot{\varphi}(t)=\frac{V_{N}}{R}$; $\dot{\lambda }(t)=\frac{V_{E}}{R\cos \varphi }.$ 
 \end{ESKDexplanation}
   Аналіз показує, що еволюція параметрів $\alpha_{h}$, $\alpha_{E}$, $\alpha_{N}$ у часі описується наступною системою рівняннь:
 \begin{equation} 
@@ -340,8 +340,9 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 
 Відмінні від нуля елементи матриці $F$ мають вигляд:
 
-\begin{equation*} 
+\begin{equation} 
 \begin{array}{l}
+\label{eq:Fsdins_} 
 {f_{1,2} =\frac{\dot{\lambda }}{R_{\text{З}} } tg\varphi;f_{1,3} =\frac{-\dot{\lambda }R_{\text{З}} }{R};f_{1,4} =\frac{R_{\text{З}} }{R\cos \varphi } ;}\\
 {f_{2,3} =\frac{-\dot{\varphi }R_{\text{З}} }{R};f_{2,5} =\frac{R_{\text{З}} }{R};f_{3,6} =1;}\\
 % \end{array}
@@ -377,7 +378,7 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 {f_{9,4} =\frac{tg\varphi }{R}; f_{9,7} =\omega_{N}; f_{9,8} =-\omega_{E};}\\ 
 {f_{9,10} =-b_{3,1};f_{9,11} =-b_{3,2};f_{9,12} =-b_{3,3}.}
 \end{array}
-\end{equation*} 
+\end{equation} 
 Відрізні від нуля елементи матриці \textit{G}(15$\times $21) задовольняють таким 
 співвідношенням:
 \begin{equation} 
