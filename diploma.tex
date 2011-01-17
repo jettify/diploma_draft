@@ -24,13 +24,12 @@
 
 \documentclass[ukrainian,utf8,simple,floatsubsection, hpadding=5mm,equationsubsection,]{eskdtext}
 % hpadding=5mm  intend between frame and text, by default 3mm
-% equationsubsection enumerate formula based on number of subsection
+% equationsubsection enumerate formulas based on number of subsection
 
 
 
 \usepackage[warn]{mathtext}
 \usepackage[unicode]{hyperref} % enable hyperlinks (активувати посилання)
-
 % Formulae + cyrillic = wtf???
 % You should use \text{} in formulae to write cyrillic characters. 
 % Unfortunately mathtext package is not supported :(
@@ -49,8 +48,9 @@
 
 \usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
 % You should use \ESKDtotal{page} to count number of pages in Diploma
-% \ESKDtotal{figure} to count number of figures
-% \ESKDtotal{bibitem} - count number of references
+% \ESKDtotal{ELEMENT}    return total number of elements (pages,figures and so on)
+% ELEMENT could be: page, figure, table, appendix or bibitem
+% \ESKDtotal{page}  if you wand to obtain number of pages in document
 
 \usepackage{graphicx,epstopdf} % epstopdf-convert eps files to pdf
 \graphicspath{{algorithms/}{schemes/}{software/}{fig/}} % look up folders for figures
@@ -63,17 +63,18 @@
 \usepackage{nomencl} % support for abbreviations
 \makenomenclature % generate abbrevs index file
 
-\usepackage{float}
-
+\usepackage{float} % used to manage positon of float figures and etc.
 \include{variables} % class parameters tuning
 
-\begin{document}
 
+
+
+\begin{document}
 % Uncoment this to include task to the paper
 %\ESKDthisStyle{formIIab}
 %\include{task}
 %\newpage
-% Uncoment this to include task to the paper
+
 \newpage
 \ESKDthisStyle{empty}
 \include{annotation}
@@ -101,29 +102,29 @@
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter3}
-%%  Chapter 4
+% %%  Chapter 4
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter4}
-%% Chapter 5
-\newpage
-\ESKDthisStyle{formII}
-\include{chapter5}
-%% Chapter 6 % Health safety
+% %% Chapter 5
+% \newpage
+% \ESKDthisStyle{formII}
+% \include{chapter5}
+% % Chapter 6 % Health safety
 % \newpage
 % \ESKDthisStyle{formII}
 % \include{chapter6}
-% Chapter 7 % Ecology
+% % Chapter 7 % Ecology
 % \newpage
 % \ESKDthisStyle{formII}
 % \include{chapter7}
-
-%% Last chapter %General Conclusions
+% 
+% %% Last chapter %General Conclusions
 % \newpage
 % \ESKDthisStyle{formIIab}
 % \include{conclusions}
-
-% Print reference page
+% 
+% % Print reference page
 \newpage
 \ESKDthisStyle{formIIab}
 \include{literature}
@@ -135,6 +136,9 @@
 % \newpage
 % \ESKDthisStyle{formIIab}
 % \include{appendixB}
+
+
+
 
 \end{document}
 

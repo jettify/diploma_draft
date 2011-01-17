@@ -89,7 +89,7 @@ Q\left(\varphi \right)\cdot B\left(\psi ,\vartheta ,\gamma \right).\]
 \right)$, що характеризує орієнтацію ЛА у просторі.
 
 Вказані навігаційні параметри задовольняє таким диференціальним рівнянням:
-\begin{equation}
+\begin{equation} \small
 \left .
 \begin{array}{l} 
 {\dot{\lambda }=
@@ -98,11 +98,11 @@ Q\left(\varphi \right)\cdot B\left(\psi ,\vartheta ,\gamma \right).\]
 {\dot{h}=V_{h} \left(t\right)} \end{array}\right\};
 \label{eq:coordinates}
 \end{equation}
-\begin{equation}
+\begin{equation} \small
 \dot{B}=B\Omega_{c} -\Omega_{\Gamma}B ;               
 \label{eq:dBmatrix}
 \end{equation}
-\begin{equation}
+\begin{equation} \small
 \dot{\bar{V}}=B\bar{a}_{c} -\Delta \bar{n}\left(t\right)+\bar{g}_{T} ,     
 \label{eq:dVector}
 \end{equation}
@@ -112,17 +112,17 @@ Q\left(\varphi \right)\cdot B\left(\psi ,\vartheta ,\gamma \right).\]
 направляючих косинусів $B\left(\psi ,\vartheta ,\gamma \right)$; 
 \item \eqref{eq:dVector} -- векторне рівняння відновно 
 проекцій шляхової швидкості ЛА 
-$\bar{V}=\left(\begin{array}{ccc} {V_{E} ,} & {V_{N} 
+$\small \bar{V}=\left(\begin{array}{ccc} {V_{E} ,} & {V_{N} 
 ,} & {V_{h} } \end{array}\right)^{T} $; $\bar{a}_{c} \left(t\right)=\left(\begin{array}{ccc} 
 {a_{x1} \left(t\right),} & {a_{y1} \left(t\right),} & {a_{z1} \left(t\right)} \end{array}
 \right)^{T} $-- вектор проекцій уявного прискорення початку зв'язаної СК на її осі;
 \end{ESKDexplanation}
-\[\Omega_{c} =\left(\begin{array}{ccc} 
+\[ \small \Omega_{c} =\left(\begin{array}{ccc} 
 {0} & {-\omega {}_{z1} } & {\omega {}_{y1} } \\ 
 {\omega {}_{z1} } & {0} & {-\omega {}_{x1} } \\ 
 {-\omega {}_{y1} } & {\omega {}_{x1}} & {0} 
 \end{array}\right);\] 
-\[\Omega_{\Gamma } =\left(\begin{array}{ccc} 
+\[ \small \Omega_{\Gamma } =\left(\begin{array}{ccc} 
 {0} & {-(\dot{\lambda }+u)\sin \varphi } & {(\dot{\lambda }+u)\cos \varphi } \\ 
 {(\dot{\lambda}+u)\sin \varphi } & {0} & {\dot{\varphi }} \\
 {-(\dot{\lambda }+u)\cos \varphi } & {-\dot{\varphi }} & {0} 
@@ -268,7 +268,7 @@ $\delta_{\zeta } $ описується більш простими, ніж \eqr
 $\delta_{\eta_{u} } $,$\delta_{\zeta_{u} } $ зв'язані з параметрами $\delta_{\xi }$,
 $\delta_{\eta } $,$\delta_{\zeta }$ співвідношеннями виду:
 \[\begin{array}{l} 
-{\delta_{\xi } =\delta_{\xi_{u} } Aos\lambda_{*} -\delta_{\xi_{u} } \sin \lambda_{*} } \\ 
+{\delta_{\xi } =\delta_{\xi_{u} } \cos\lambda_{*} -\delta_{\xi_{u} } \sin \lambda_{*} } \\ 
 {\delta_{\eta } =\delta_{\eta_{u} }} \\ 
 {\delta_{\zeta } =\delta_{\xi_{u} } \sin \lambda_{*} -\delta_{\zeta_{u} } Aos\lambda_{*} } \end{array};\] 
 \begin{ESKDexplanation}
@@ -277,19 +277,20 @@ $\delta_{\eta } $,$\delta_{\zeta }$ співвідношеннями виду:
 Рівняння, що описують еволюцію в часі похибок моделювання інерціальної СК $\delta_{\xi_{u} } $,
 $\delta_{\eta_{u} } $,$\delta_{\zeta_{u} } $ виявляється досить простими:
 
-\[\begin{array}{l}{\dot{\delta }_{\xi_{u} } =-\varepsilon_{\xi_{u}} (t);} \\ 
-{\dot{\delta}_{\eta_{u} } =-\varepsilon_{\eta_{u} } (t);} \\ 
+\[\small
+\begin{array}{l}{\dot{\delta }_{\xi_{u} } =-\varepsilon_{\xi_{u}} (t);} 
+{\dot{\delta}_{\eta_{u} } =-\varepsilon_{\eta_{u} } (t);} 
 {\dot{\delta}_{\zeta_{u} } =-\varepsilon_{\zeta_{u} } (t),} \end{array}\] 
 
-де $\left(
-\begin{array}{l} {\varepsilon_{\xi_{u} } } \\ 
+де $\small
+\left(\begin{array}{l} {\varepsilon_{\xi_{u} } } \\ 
 {\varepsilon_{\eta_{{\rm u}} } } \\ 
 {\varepsilon_{\zeta_{u} } } \end{array}\right)=\Delta {\bf C}(t){
 \bf C}(t)\left(\begin{array}{l} {\varepsilon_{1} } \\ 
 {\varepsilon_{2} } \\ 
 {\varepsilon_{3} } \end{array}\right)$;
 
-$\Delta {\bf C}(t)=\left(\begin{array}{ccccc} 
+$\small \Delta {\bf C}(t)=\left(\begin{array}{ccccc} 
 {\cos \lambda_{*} } & {} & {-\sin \lambda_{*} } & {} & {0} \\ 
 {\sin \lambda_{*} } & {} & {\cos \lambda_{*} } & {} & {0} \\ 
 {0} & {} & {0} & {} & {1} \end{array}\right)$ -- матриця переходу від рухливої  
@@ -314,17 +315,18 @@ $\delta_{\zeta } $\}, \{$\delta_{\xi_{u} } $,$\delta_{\eta_{u}} $,$\delta_{\zeta
 $C_{\omega } $, $C_{a} $, $C_{\varepsilon} $, $D_{a} $, $\bar{\varepsilon }_{A} $, $\Delta \bar{a}_{c} $:
 
 \begin{equation} \label{eq:dawsdins} \begin{array}{l} 
-{\dot{C}_{\omega } =\xi_{A\omega } (t);} \\ 
-{\dot{C}_{a} =\xi_{Aa} (t);} \\ 
-{\dot{C}_{\varepsilon } =\xi_{A\varepsilon } (t);} \\ 
-{\dot{D}_{a} =\xi_{Da}(t);} \\ 
-{\dot{\bar{\varepsilon }}_{c} =\bar{\xi}_{A} (t);} \\ 
+{\dot{C}_{\omega } =\xi_{A\omega } (t);} 
+{\dot{C}_{a} =\xi_{Aa} (t);} 
+{\dot{C}_{\varepsilon } =\xi_{A\varepsilon } (t);} \\
+{\dot{D}_{a} =\xi_{Da}(t);} 
+{\dot{\bar{\varepsilon }}_{c} =\bar{\xi}_{A} (t);} 
 {\Delta \dot{\bar{a}}_{c} =\bar{\xi }_{\Delta a}(t),} \end{array} \end{equation} 
 \begin{ESKDexplanation}
-\item де $\xi_{A\omega } (t);$$\xi_{Aa} (t);$\item $\xi_{A\varepsilon } (t);$$\xi_{Da} (t);$
-$\bar{\xi }_{A} (t);$$\bar{\xi }_{\Delta a} (t)$-- білошумні збурення відповідної розмірності, 
+\item де $\xi_{A\omega } (t);$ $\xi_{Aa} (t);$\item $\xi_{A\varepsilon } (t);$ $\xi_{Da} (t);$
+$\bar{\xi }_{A} (t);$ $\bar{\xi }_{\Delta a} (t)$-- білошумні збурення відповідної розмірності, 
 які характеризують дрейф квазістаціонарних  параметрів моделі ДПІ. % \eqref{eq:__6_13_}.
 \end{ESKDexplanation}
+
 Повертаючись до моделей похибок БІНС відзначимо, що коли  вектор-стовпець похибок БІНС $\bar{X}(t)$ прийняти 
 у вигляді:
 \[\bar{X}=(\Delta R_{E} ,\Delta R_{N} ,\Delta h,\Delta V_{E} ,\Delta V_{N} ,\Delta 
@@ -339,7 +341,6 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 середніми значеннями и одиничними дисперсіями.
 
 Відмінні від нуля елементи матриці $F$ мають вигляд:
-
 \begin{equation} 
 \begin{array}{l}
 \label{eq:Fsdins_} 
@@ -353,7 +354,7 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 {f_{4,3}=\frac{V_{E} }{R^{2} } \left(V_{h} -V_{N} tg\varphi \right);}\\
 {f_{4,4}=\frac{V_{N}\sin \varphi -V_{h} \cos \varphi }{R\cos \varphi } ;}\\
 {f_{4,5}=\left(2u+\dot{\lambda }\right)\sin \varphi; f_{4,6}=-\left(2u+\dot{\lambda }\right)\cos \varphi ;}\\
-{f_{4,8}=-a_{h};f_{4,9}=a_{N};f_{4,13}=b_{1,1};f_{4,14}=b_{1,2};f_{4,15}=b_{1,3};}
+{f_{4,8}=-a_{h};f_{4,9}=a_{N};f_{4,13}=b_{1,1};f_{4,14}=b_{1,2};f_{4,15}=b_{1,3};}\\
 % \end{array}
 % \end{equation*} 
 % \begin{equation*}
@@ -366,7 +367,7 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 {f_{6,3} =-\frac{2g_{e} }{a} -\frac{V_{E}^{2} +V_{N}^{2}}{R^{2} };f_{6,4} =\left(2u+\dot{\lambda }\right)\cos \varphi ;}\\
 {f_{6,5}=\dot{\varphi }(t)+\frac{V_{N} }{R};f_{6,7} =-a_{N} ;f_{6,8} =a_{E} ;f_{6,13}=b_{3,1};f_{6,14}=b_{3,2}; f_{6,15}=b_{3,3} ;}\\ 
 {f_{7,5}=-\frac{1}{R} ;f_{7,8}=\omega_{h}; f_{7,9}=-\omega_{N} ;}\\
-{f_{7,10}=-b_{1,1};f_{7,11}=-b_{1,2};f_{7,12}=-b_{1,3} ;} 
+{f_{7,10}=-b_{1,1};f_{7,11}=-b_{1,2};f_{7,12}=-b_{1,3} ;} \\
 % \end{array} 
 % \end{equation*} 
 % \begin{equation*}
@@ -635,10 +636,10 @@ $\eta_{Rlc,k}$ ,  $\eta_{\delta Rlc,k}$  (l=E,N),  $\eta_{Hc,k}$
 інформації для розглянутого складу навігаційних підсистем рекомендується використовувати 
 розширений вектор стану, що включає 22 компоненти, у тому числі: 15 компонент -- помилки 
 нанотехнологічної БІНС, одна -- систематична помилка БВ, 6 компонент -- корельовані 
-помилки СНС у визначенні координат і проекцій швидкості:\\
-
+помилки СНС у визначенні координат і проекцій швидкості:
 \begin{equation}
 \label{eq:state_vector}
+\small
 % \begin{array}{l} 
 % {\bar{X}=(\Delta R_{E} ,\Delta R_{N} ,\Delta h,\Delta V_{E} ,\Delta V_{N} ,\Delta V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,
 % \varepsilon_{c1} ,\varepsilon_{c2} ,\varepsilon_{c3} , \Delta a_{c1} ,} \\ 
@@ -866,15 +867,13 @@ $h_{2,i,j} =h_{i+n,j} $ (\textit{i} = 1,2,3, \textit{j} = 1, \dots , 22).
 Якщо умови не виконуються на $k$-му  кроці для будь якого \textit{j}, то відповідний 
 підвектор спостережень ігнорується при обробці інформації на цьому кроці.
 
-Одержувані з виходу фільтра оцінки помилки нанотехнологічної БІНС   використовуються 
-для виправлення вихідних навігаційних параметрів нанотехнологічної БІНС. Алгоритм 
-виправлення оцінок координат і проекцій швидкості має вигляд:
+Одержувані з виходу фільтра оцінки помилки БІНС використовуються для виправлення вихідних навігаційних параметрів БІНС. Алгоритм виправлення оцінок координат і проекцій швидкості має вигляд:
 
 \begin{equation} \label{eq:correct_lam_phi_V} 
 \begin{array}{l} 
 {h^{+}_{i} =h^{-}_{i} -\Delta \hat{h}_{i} ;} \\ 
-{\varphi_{i}^{+} =\varphi ^{-}_{i} -\frac{\Delta \hat{R}_{Ni} }{R_{7} } ;} \\ 
-{\lambda_{i}^{+} =\lambda ^{-}_{i} -\frac{\Delta \hat{R}_{Ei} }{R_{7} } ;} \\ 
+{\varphi_{i}^{+} =\varphi ^{-}_{i} -\frac{\Delta \hat{R}_{Ni} }{R_{\text{З}} } ;} \\ 
+{\lambda_{i}^{+} =\lambda ^{-}_{i} -\frac{\Delta \hat{R}_{Ei} }{R_{\text{З}} } ;} \\ 
 {V^{+}_{l,i}=V^{-}_{l,i} -\Delta \hat{V}_{l} , l=E,N,h,} \end{array} 
 \end{equation} 
 \begin{ESKDexplanation}
