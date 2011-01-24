@@ -1,31 +1,36 @@
-% This is my tamplate for presentations of diploma
-% 
+% This is my template for presentations of diploma
+% All slides in code separated by line
 
-\documentclass[ucs]{beamer}
-\usepackage{beamerthemeshadow}
+\documentclass[ucs]{beamer}    % [ucs] makes Cyrillic fonts visible in index 
+\usepackage{beamerthemeshadow} % use <beamerthemeshadow> theme
 \usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}    % set encoding
 \usepackage[english,ukrainian]{babel}
 \usepackage{amssymb,amsfonts,amsmath}
 \usepackage{cite,enumerate,float,indentfirst}
-% \usepackage[dvips]{graphicx}
-\usepackage{graphicx,epstopdf} % epstopdf-convert eps files to pdf
+\usepackage{graphicx,epstopdf}    % epstopdf-convert eps files to pdf
 \graphicspath{{fig/},{software/}} % look up folders for figures
 
-\usepackage{wrapfig}
-
-\usepackage{color} 
-\usepackage{xcolor} 
-
-\usepackage{helvet} % set font family for whole document
+\usepackage{color}     % you can colour your formulas with this, just use ${\color{red} E=mc^2}$
+\usepackage{helvet} 	       % set font family for whole document
 \usefonttheme[onlymath]{serif} % Set font family only for math mode
 
-% \usepackage[warn]{mathtext}
- 
-% arev, avant, bookman, chancery, charter, euler, helvet, lmodern, mathtime,
-% mathptm, mathptmx, newcent, palatino, pifont, utopia.
+% If you want divide slide on two parts just use code:
+% \begin{columns}[t]
+% \begin{column}{5cm}
+%  some data in column 1
+% \end{column}
+% \begin{column}{5cm}
+%  some data in column 2
+% \end{column}
+% \end{columns}
 
+% If you want to make theorem or emphasize some info, use next code:
+% \begin{block}{title of block}
+% Some data in block, feel free to add formulas,tables or figures here.
+% \end{block} 
 
+% use \begin{frame}[shrink=5] in case if you need insert more text in slide
 
 \begin{document}
 \title{Інтегрована інерціально-супутникова система навігації, що базується на принципах комплексної обробки інформації
@@ -33,19 +38,19 @@
 % \author{доповідач:Микола Новік\\ керівник: Мар’ясова Т.І.}
 \author{Микола Новік}
 \date{\today} 
-
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % First Slide, title page
 \begin{frame}
 \titlepage
 \end{frame}
-
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % Just print table of contents
 \begin{frame}\frametitle{Зміст доповіді}
 \tiny
 \tableofcontents
 \end{frame} 
-
-%intro
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% Intro
 \section{Постановка задачі та вибір системи} 
 \subsection{Постановка задачі та вибір системи} 
 \begin{frame}\frametitle{Постановка задачі комплексування}
@@ -204,14 +209,11 @@ $\bar{Y}_{k} =
 {\tilde{V}_{h,k} -\tilde{V}_{hS,k},}\\
 {\tilde{h}_{\text{БВ}} -\tilde{h}_{s,k}}
 \end{array} \right) $
-
 \end{column}
 \end{columns}
-
-
 \end{frame}
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Еволюція стаціонарно закріпленої БІНС} 
 \begin{frame}[plain]
 \frametitle{Помилка координати}
@@ -228,15 +230,14 @@ $\bar{Y}_{k} =
 \subsection{Сумарна похибка БІНС} 
 \begin{frame}[plain]
 \frametitle{Сумарна похибка БІНС}
-
 \begin{figure}[l]
 \includegraphics[scale=0.45]{ins_stat_sum}
-
 \caption{\tinyЕволюція сумарної похибки по координаті за умови,
 дрейфу гіроскопа   $0.01 deg/h$,похибки координатного тригранника $10^{-3} rad$, та зміщенням акселерометра $10^{-4} m/s^2$}
 \label{fig:sdins2}
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Навігаційний фільтр} 
 \begin{frame}[plain]
@@ -260,6 +261,7 @@ $\begin{array}{l}
 $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \end{block}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Траєкторія руху ЛА} 
 \begin{frame}%[plain]
@@ -271,6 +273,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \section{Результати моделювання ІСНС} 
 \subsection{Поихибка оцінки по координаті} 
@@ -282,6 +285,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 % \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Поихибка оцінки по швидкості} 
 \begin{frame}%[plain]
@@ -303,6 +307,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 % \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Поихибка оцінки дрейфів гіроскопів} 
 \begin{frame}%[plain]
@@ -313,6 +318,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 % \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Поихибка оцінки зміщення акселерометрів} 
 \begin{frame}%[plain]
@@ -323,11 +329,11 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 % \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Середньоквадратичні відхилення}
 \begin{frame}
 \frametitle{Середньоквадратичні відхилення}
-
 \begin{block}{СКВ похибок оцінювання}
 \begin{table}%[H]
 \centering
@@ -345,6 +351,7 @@ N&East&North&Height \\ \hline
 \end{table}
 \end{block}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \section{Програмне забезпечення} 
 \subsection{Інтерфейс програми} 
@@ -357,25 +364,15 @@ N&East&North&Height \\ \hline
 \end{figure}
 \end{frame}
 
-
-
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
+% Last slide... with Easter Egg
 \section{The End} 
-
 \begin{frame}%[plain]
 \begin{block}{sudo rm -rf / }
 Дякую за увагу!
 \end{block}
-
-
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
