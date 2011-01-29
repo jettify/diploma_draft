@@ -10,6 +10,8 @@ _site
 *.nls
 *.swp
 *.ilg
-
+*.nav
+*.snm
+*-converted-to.pdf
 zzz.pdf
 

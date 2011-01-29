@@ -232,10 +232,10 @@ $\Delta V_{N}(t)$,$\Delta V_{h}(t)$, також може бути отриман
 \begin{equation} 
 \label{eq:dasdins} \begin{array}{l} 
 {\dot{\alpha }_{E} =-\omega_{N} \alpha_{h} +\omega_{h} \alpha_{N} -\frac{\Delta V_{N} }{R} -\sum_{i=1}^{3}b_{1,i}\varepsilon_{i} ,} \\
-{\dot{\alpha }_{N} =-\omega_{h} \alpha_{E} +\omega_{E} \alpha_{h} +\frac{\Delta V_{E} }{R} -u\sin \varphi \frac{\Delta R_{N} }{R_{7} }
+{\dot{\alpha }_{N} =-\omega_{h} \alpha_{E} +\omega_{E} \alpha_{h} +\frac{\Delta V_{E} }{R} -u\sin \varphi \frac{\Delta R_{N} }{R_{З} }
 -\sum_{i=1}^{3}b_{2,i}  \varepsilon_{i} ,} \\ 
 {\dot{\alpha }_{h} =-\omega_{E} \alpha_{N} +\omega_{N} \alpha_{E} +\frac{\Delta V_{E} }{R} tg\varphi +(u\cos \varphi +\frac{V_{E} }{R\cos ^{2} \varphi } )
-\frac{\Delta R_{N} }{R_{7} } -\sum_{i=1}^{3}b_{3,i}\varepsilon_{i} ,} \end{array} \end{equation} 
+\frac{\Delta R_{N} }{R_{З} } -\sum_{i=1}^{3}b_{3,i}\varepsilon_{i} ,} \end{array} \end{equation} 
 
 \begin{ESKDexplanation}
 \item де  $\omega_{E} =-\dot{\varphi }(t),\omega_{N} =\left[u+\dot{\lambda }(t)\right]
@@ -375,11 +375,108 @@ V_{h} ,\alpha_{E} ,\alpha_{N} ,\alpha_{h} ,\varepsilon_{c1} ,\varepsilon_{c2}
 % \begin{array}{l}
 {f_{8,2} =-\frac{u}{R} \sin \varphi; f_{8,4} =\frac{1}{R};f_{8,7} =-\omega_{h};f_{8,9} =\omega_{E};}\\
 {f_{8,10} =-b_{2,1}; f_{8,11} =-b_{2,2}; f_{8,12} =-b_{2,3} ;}\\ 
-{f_{9,2} =\frac{1}{R}_{7} (u\cos \varphi +\frac{\dot{\lambda }}{\cos \varphi });}\\
+{f_{9,2} =\frac{1}{R}_{\text{З}} (u\cos \varphi +\frac{\dot{\lambda }}{\cos \varphi });}\\
 {f_{9,4} =\frac{tg\varphi }{R}; f_{9,7} =\omega_{N}; f_{9,8} =-\omega_{E};}\\ 
 {f_{9,10} =-b_{3,1};f_{9,11} =-b_{3,2};f_{9,12} =-b_{3,3}.}
 \end{array}
 \end{equation} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sideways}
+
+\centering
+% \caption{Середньоквадратичні помилки: }
+\begin{tabular}{c}
+
+$
+\scriptsize
+\left(\begin{array}{cccc cccc cccc cccc cccc cc}
+% {1} & {2} & {3} & {4} & {5} & {6} & {7} & {8} & {9} & {0} & {1} & {2} & {3} & {4} & {5}\\ 
+% Position
+{.} & {\frac{\dot{\lambda }}{R_{\text{З}} } tg\varphi;} & {\frac{-\dot{\lambda }R_{\text{З}} }{R}} & {\frac{R_{\text{З}} }{R\cos \varphi }} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {\frac{-\dot{\varphi }R_{\text{З}} }{R}} & {.} & {\frac{R_{\text{З}} }{R}} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {.} & {.} & {.} & {1} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+% Velocity
+{.} & 
+{\begin{array}{c}{\frac{2u+\dot{\lambda }}{R_{\text{З}} } \left(V_{h} \sin \varphi  +V_{N} \cos \varphi \right)}\\
+{-\frac{\dot{\lambda }}{R_{\text{З}} } tg\varphi \left(V_{h} \cos \varphi -V_{N} \sin \varphi \right)}\end{array}} & 
+{\frac{V_{E} }{R^{2} } \left(V_{h} -V_{N} tg\varphi \right)} & 
+{\frac{V_{N}\sin \varphi -V_{h} \cos \varphi }{R\cos \varphi }} & 
+{\left(2u+\dot{\lambda }\right)\sin \varphi} & 
+{-\left(2u+\dot{\lambda }\right)\cos \varphi} & {.} & 
+{-a_{h}} & 
+{a_{N}} & {.} & {.} & {.} & 
+{b_{1,1}} & 
+{b_{1,2}} & 
+{b_{1,3}}\\ 
+
+{.} & 
+{-\frac{2u+\dot{\lambda }}{R_{\text{З}} }V_{E} \cos \varphi -\frac{V_{E}^{2} }{RR_{\text{З}} } tg^{2} \varphi} & 
+{\frac{V_{E}^{2} tg\varphi +V_{h} V_{N} }{R^{2} }} & 
+{-\left(2u+\dot{\lambda }\right)\sin \varphi;} & 
+{-\frac{V_{h} }{R}} & 
+{-\dot{\varphi }(t)} & 
+{a_{h}} & {.} & 
+{-a_{E}} & {.} & {.} & {.} & 
+{b_{2,1}} & 
+{b_{2,2}} & 
+{b_{2,3}}\\ 
+
+{.} & 
+{-2u\frac{V_{E}^{} \sin \varphi }{R} +\frac{3g_{e} }{2R_{\text{З}}} e^{2} \sin \varphi \cos \varphi} & 
+{-\frac{2g_{e} }{a} -\frac{V_{E}^{2} +V_{N}^{2}}{R^{2}}} & 
+{\left(2u+\dot{\lambda }\right)\cos \varphi} & 
+{\dot{\varphi }(t)+\frac{V_{N} }{R}} & {.} &
+{-a_{N}} & 
+{a_{E}} & {.} & {.} & {.} & {.} & 
+{b_{3,1}} & 
+{b_{3,2}} & 
+{b_{3,3}}\\ 
+
+% Alpha
+{.} & {.} & {.} & {.} & 
+{-\frac{1}{R}} & {.} & {.} & 
+{\omega_{h}} & 
+{-\omega_{N}} & 
+{-b_{1,1}} & 
+{-b_{1,2}} & 
+{-b_{1,3}} & {.} & {.} & {.}\\
+
+{.} & 
+{-\frac{u}{R} \sin \varphi} & {.} & 
+{\frac{1}{R}} & {.} & {.} & 
+{-\omega_{h}} & {.} & 
+{\omega_{E}} & 
+{-b_{2,1}} & 
+{-b_{2,2}} & 
+{-b_{2,3}} & {.} & {.} & {.}\\
+
+
+{.} & 
+{\frac{1}{R}_{\text{З}} (u\cos \varphi +\frac{\dot{\lambda }}{\cos \varphi })} & {.} & 
+{\frac{tg\varphi }{R}} & {.} & {.} & 
+{\omega_{N}} & 
+{-\omega_{E}} & {.} & 
+{-b_{3,1}} & 
+{-b_{3,2}} & 
+{-b_{3,3}} & {.} & {.} & {.}\\
+
+% othe staff
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+{.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
+\end{array}\right);$ \\
+\end{tabular}
+\end{sideways}
+% \end{rotate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 Відрізні від нуля елементи матриці \textit{G}(15$\times $21) задовольняють таким 
 співвідношенням:
 \begin{equation} 
