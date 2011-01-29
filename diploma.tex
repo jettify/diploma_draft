@@ -19,72 +19,100 @@
 % 12. Appendixes.
 % Andriy Senkovych
 %
-% Many thanks to my friend Andriy, for this template, original comments saved
+% Many thanks to my friend Andriy, for this template, original comments saved and some my notes added.
 % 
+% Mykola Novik
+
+% diploma.tex
+
 
 \documentclass[ukrainian,utf8,simple,floatsubsection, hpadding=5mm,equationsubsection,]{eskdtext}
 % hpadding=5mm  intend between frame and text, by default 3mm
 % equationsubsection enumerate formulas based on number of subsection
 
 
-
+%%%%%-------------[Math Tuning]--------------------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
 \usepackage[warn]{mathtext}
-\usepackage[unicode]{hyperref} % enable hyperlinks (активувати посилання)
+\usepackage[unicode]{hyperref}   % enable hyperlinks (активувати посилання)
 % Formulae + cyrillic = wtf???
 % You should use \text{} in formulae to write cyrillic characters. 
 % Unfortunately mathtext package is not supported :(
 % Example: $ \text{а} + \text{б} = \text{в} $
 
-% explanation for formulas should be in next form:
+% explanation after formulas should be in next form:
 % \begin{ESKDexplanation}
 %     \item  [something]
 %     \item  [something else]
 % \end{ESKDexplanation}
+\usepackage{amssymb}             % special math characters
+\usepackage{amsmath}             % using cyrillic in formulae
+\usepackage{amsfonts}            % special math fonts
+
+%%%%%-------------[Graphics Tuning]----------------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
+\usepackage{graphicx,epstopdf}   % epstopdf-convert eps files to pdf
+\usepackage{float}               % used to manage positon of float figures and etc.
+\graphicspath{{algorithms/}{schemes/}{software/}{fig/}} % look up folders for figures
+
+%%%%%-------------[Tables Tuning]------------------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
+\usepackage{longtable}           % multipage tables
+\usepackage{multirow}            % using rowspan in tables
+
+%%%%%-------------[Abbreviations support]----------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
+\usepackage{nomencl}             % support for abbreviations
+\makenomenclature                % generate abbrevs index file
 
 
-\usepackage{amssymb} % special math characters
-\usepackage{amsmath} % using cyrillic in formulae
-\usepackage{amsfonts} % special math fonts
-
-\usepackage{eskdtotal} % calculate total number of pages, figures, tables and etc.
+%%%%%-------------[Other stuff]--------------------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
+\usepackage{eskdtotal}          % calculate total number of pages, figures, tables and etc.
 % You should use \ESKDtotal{page} to count number of pages in Diploma
 % \ESKDtotal{ELEMENT}    return total number of elements (pages,figures and so on)
 % ELEMENT could be: page, figure, table, appendix or bibitem
 % \ESKDtotal{page}  if you wand to obtain number of pages in document
-
-\usepackage{graphicx,epstopdf} % epstopdf-convert eps files to pdf
-\graphicspath{{algorithms/}{schemes/}{software/}{fig/}} % look up folders for figures
-
-\usepackage{listings} % to add source codes
-
-\usepackage{longtable} % multipage tables
-\usepackage{multirow} % using rowspan in tables
-
-\usepackage{nomencl} % support for abbreviations
-\makenomenclature % generate abbrevs index file
-
-\usepackage{float} % used to manage positon of float figures and etc.
-\include{variables} % class parameters tuning
+\usepackage{listings}            % to add source codes
 
 
-
+%%%%%-------------[Class Parameters]---------------------%%%%%%
+%%%%%----------------------------------------------------%%%%%%
+\include{variables}             % class parameters tuning
 
 \begin{document}
-% Uncoment this to include task to the paper
-%\ESKDthisStyle{formIIab}
-%\include{task}
-%\newpage
-
 \newpage
-\ESKDthisStyle{empty}
+
+%%%%--------------------[DELETE THIS]---------------------%%%%%
+\subsection*{TODO}
+\begin{enumerate}
+ \item Посатавити номер наказу та дату видачи наказу;
+ \item Уточнити номер НДР;
+ \item Перевірити Технічне завдання;
+ \item Перевірити нумерацію сторінок;
+ \item Перевірити і додати джерела до списку літератури;
+ \item Можливо зменшити шрифт в прізвищах.
+\end{enumerate}
+
+%% Technical task
+\newpage
+\ESKDthisStyle{formIIab}
+\include{task}
+
+%% Annotation aka Referat
+\newpage
+\ESKDthisStyle{formIIab}
 \include{annotation}
 
-
-\ESKDthisStyle{formIIab}
-\printnomenclature
-
+%% Table of Contents
 \newpage
 \tableofcontents
+
+%% Nomenclature
+\newpage
+\ESKDthisStyle{formIIab}
+\addcontentsline{toc}{section}{Перелік позначень}
+\printnomenclature
 
 \newpage
 \ESKDthisStyle{formIIab}
@@ -102,7 +130,7 @@
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter3}
-% %%  Chapter 4
+%%  Chapter 4
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter4}
@@ -110,35 +138,32 @@
 \newpage
 \ESKDthisStyle{formII}
 \include{chapter5}
-% % Chapter 6 % Health safety
-% \newpage
-% \ESKDthisStyle{formII}
-% \include{chapter6}
-% % Chapter 7 % Ecology
-% \newpage
-% \ESKDthisStyle{formII}
-% \include{chapter7}
+% Chapter 6 % Health safety
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter6}
+% Chapter 7 % Ecology
+\newpage
+\ESKDthisStyle{formII}
+\include{chapter7}
 % 
-% %% Last chapter %General Conclusions
-% \newpage
-% \ESKDthisStyle{formIIab}
-% \include{conclusions}
+%% Last chapter %General Conclusions
+\newpage
+\ESKDthisStyle{formIIab}
+\include{conclusions}
 % 
 % % Print reference page
 \newpage
 \ESKDthisStyle{formIIab}
 \include{literature}
-% Appendix
-% \newpage
-% \ESKDthisStyle{formIIab}
-% \include{appendixA}
-% 
+% Appendix A
+\newpage
+\ESKDthisStyle{formIIab}
+\include{appendixA}
+% Appendix B
 % \newpage
 % \ESKDthisStyle{formIIab}
 % \include{appendixB}
-
-
-
 
 \end{document}
 
