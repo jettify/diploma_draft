@@ -538,6 +538,37 @@ $\begin{array}{l}
 $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \end{block}
 \end{frame}
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\subsection{Виправлення координат} 
+\begin{frame}%[plain]
+\frametitle{Виправлення координат}
+Виправлення координат:\\
+$\begin{array}{l} 
+{h^{+}_{i} =h^{-}_{i} -\Delta \hat{h}_{i} ;} \\ 
+{\varphi_{i}^{+} =\varphi ^{-}_{i} -\frac{\Delta \hat{R}_{Ni} }{R_{\text{З}} } ;} \\ 
+{\lambda_{i}^{+} =\lambda ^{-}_{i} -\frac{\Delta \hat{R}_{Ei} }{R_{\text{З}} } ;} \\ 
+\end{array} $\\
+Виправлення швидкостей:\\
+$\begin{array}{l}
+{V^{+}_{E}=V^{-}_{E} -\Delta \hat{V}_{E}; } \\
+{V^{+}_{N}=V^{-}_{N} -\Delta \hat{V}_{N}; } \\
+{V^{+}_{h}=V^{-}_{h} -\Delta \hat{V}_{h}. } 
+\end{array} $\\
+Виправлення орієнтації географічної СК:\\
+$\stackrel{\frown}{B}^{+}_{i} =\Delta B_{i} \stackrel{\frown}{B}^{-}_{i}$
+
+$\Delta B_{i} =\left(\begin{array}{ccc} 
+{1} & {-\hat{\alpha }_{h,i} } & {\hat{\alpha }_{N,i} }\\ 
+{\hat{\alpha }_{h,i} } & {1} & {-\hat{\alpha }_{E,i} }\\ 
+{-\hat{\alpha }_{N,i} } & {\hat{\alpha }_{E,i} } & {1} \end{array}\right)$.                                              
+%  
+% $\stackrel{\frown}{\alpha }_{E,i} $, 
+% $\stackrel{\frown}{\alpha }_{N,i} $, 
+% $\stackrel{\frown}{\alpha }_{h,i} $
+
+% \begin{block}{Фільтр Калмана}
+% \end{block}
+\end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \section{Моделювання ІСНС} 
