@@ -2,18 +2,21 @@
 % All slides in code separated by line
 
 \documentclass[ucs,compress]{beamer}    % [ucs] makes Cyrillic fonts visible in index 
-\usepackage{beamerthemeshadow} % use <beamerthemeshadow> theme
+\usepackage{beamerthemeshadow}          % use <beamerthemeshadow> theme
+% \usepackage{default} 			% use empty/default style, usefull for printing 
 \usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}    % set encoding
+\usepackage[utf8]{inputenc}             % set encoding
 \usepackage[english,ukrainian]{babel}
 \usepackage{amssymb,amsfonts,amsmath}
 \usepackage{cite,enumerate,float,indentfirst}
-\usepackage{graphicx,epstopdf}    % epstopdf-convert eps files to pdf
-\graphicspath{{fig/},{software/}} % look up folders for figures
+\usepackage{graphicx,epstopdf}          % epstopdf-convert eps files to pdf
+\usepackage{textcomp}
 
-\usepackage{color}     % you can colour your formulas with this, just use ${\color{red} E=mc^2}$
-\usepackage{helvet} 	       % set font family for whole document
-\usefonttheme[onlymath]{serif} % Set font family only for math mode
+\graphicspath{{fig/},{software/}}       % look up folders for figures
+
+\usepackage{color}                      % you can colour your formulas with this, just use ${\color{red} E=mc^2}$
+\usepackage{helvet} 	                % set font family for whole document
+\usefonttheme[onlymath]{serif}          % Set font family only for math mode
 
 % \beamertemplatenavigationsymbolsempty
 
@@ -112,116 +115,120 @@
 \begin{frame} \frametitle{Схема ІСНС} 
 \begin{figure}[here]
 \centering
-\includegraphics[width=90mm,height=65mm]{structure_scheme2}
+% \includegraphics[width=90mm,height=65mm]{structure_scheme2}
+\includegraphics[scale=0.5]{sdins_main}
 \caption{Слабко зв’язана схема}
 %\label{fig:isns_loosly}
 \end{figure}
+\end{frame}
+
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+\subsection{Навігаційний Фільтр}
+\begin{frame} \frametitle{Фільтр Калмана} 
+\begin{figure}[here]
+\centering
+% \includegraphics[width=90mm,height=65mm]{kalman_data_flow}
+\includegraphics[scale=0.3]{kalman_data_flow2}
+\caption{Схема роботи фільтра Калмана}
+%\label{fig:isns_loosly}
+\end{figure}
+\end{frame}
+
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\subsection{Траєкторія руху ЛА та кути крену, курса і тангажа} 
+\begin{frame}[plain,shrink=10]
+\frametitle{Траєкторія руху ЛА та кути крену, курса і тангажа}
+\noindent
+\begin{figure}[l]
+\noindent\includegraphics[scale=0.28]{path_3d}
+\includegraphics[scale=0.35]{path_PYR}
+\caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
+\end{figure}\tiny
+\begin{columns}[t]
+\begin{column}{4cm}\noindent
+$\left \{ \begin{array}{l} 
+{\varphi (t)=\varphi_{0}+K_{\varphi } t+\Delta_{\varphi } \sin (\omega_{\varphi } t+\delta_{\varphi } );} \\ 
+{\lambda (t)=\lambda_{0}+K_{\lambda } t+\Delta_{\lambda } \sin (\omega_{\lambda } t+\delta_{_{\lambda } } );} \\ 
+{h(t)=h_{0} -\Delta h \cos (\omega_{h} t+\delta_{h} );} \\ 
+\end{array}\right.$
+$\left \{\begin{array}{l}
+{V_{E} (t)=\dot{\lambda }(t)\left[R_{1} (\varphi )+h(t)\right]\cos \varphi (t);} \\ 
+{V_{N} (t)=\dot{\varphi }(t)[R_{2} (\varphi )+h(t)];} \\ 
+{V_{h} (t)=\dot{h}(t);} \\ {R_{1} (\varphi )=\frac{a}{\sqrt{1-e^{2} \sin ^{2} \varphi } } ;} \\ 
+{R_{2} (\varphi )=R_{1} (\varphi )\frac{1-e^{2} }{1-e^{2} \sin ^{2} \varphi } ;} 
+\end{array} \right.$
+\end{column}
+\begin{column}{6cm}\noindent
+$\left \{\begin{array}{l} 
+{a_{E}(t)=\dot{V}_{E} (t)-q(t)\sin \varphi (t)V_{N} (t)+q(t)\cos (t)V_{h} (t);} \\ 
+{a_{N}(t)=\dot{V}_{N} (t)+q(t)\sin \varphi (t)V_{E} (t)+\dot{\varphi }(t)V_{h} (t);} \\ 
+{a_{h}(t)=\dot{V}_{h} (t)-q(t)\cos \varphi (t)V_{E} (t)-\dot{\varphi }(t)V_{N} (t)+g(h,\varphi);} \\ 
+{q(t)=\dot{\lambda }(t)+2\omega_{3} ;} \\ 
+{g(h,\varphi)=g_{e} [1-2\frac{h(t)}{a} +\frac{3}{4} e^{2} \sin ^{2} \varphi (t)];} 
+\end{array}\right.$
+$\left \{\begin{array}{l} 
+{\vartheta(t)=arctg[V_{h} (t)/V_{r} (t)];} \\ 
+{\psi (t)=arctg[V_{E}(t)/V_{N} (t)];} \\ 
+{\gamma (t)=K_{\gamma }\frac{V_{N}(t)\dot{V}_{E}(t)-V_{E}(t)\dot{V}_{N}(t)}{V_{r}(t)\cos v(t)},}
+ \end{array}\right.$
+\end{column}
+\end{columns}
 \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 \section{Модель системи }
 
 \subsection{Алгоритми роботи БІНС} 
-\begin{frame}[plain]
+\begin{frame}[plain,shrink=10]
 \frametitle{Алгоритми роботи БІНС}
 \tiny
-\begin{columns}[t]
-\begin{column}{5cm}
-\beamerbutton{Швидкий темп}
-$\label{eq:fgyro} 
-\begin{array}{l} 
-{\omega_{y_{\Sigma }} =\omega_{y_{\text{ЛА}}} -\omega_{y_{NHE}};} \\ 
-{\omega_{x_{\Sigma }} =\omega_{x_{\text{ЛА}}} -\omega_{x_{NHE}};} \\ 
-{\omega_{z_{\Sigma }} =\omega_{z_{\text{ЛА}}} -\omega_{z_{NHE}}.} 
+\begin{exampleblock}{Рівняння БІНС}
+\beamerbutton{Координати}\\
+$\left\{ \begin{array}{l} 
+{\dot{\lambda }=\frac{V_{E} \left(t\right)}{\left(R_{1} +h\right)\cos \varphi \left(t\right)} } \\ 
+{\dot{\varphi }=\frac{V_{N} \left(t\right)}{\left(R_{2} +h\right)} } \\ 
+{\dot{h}=V_{h} \left(t\right)} \end{array}\right .$    \\ 
+\beamerbutton{Швидкості}\\
+$\dot{\bar{V}}=B\bar{a}{}_{c} -\Delta \bar{n}\left(t\right)+\bar{g}_{T} $\\
+\beamerbutton{Орієнтація}\\
+$\dot{B}=B\Omega _{c} -\Omega _{\Gamma } B$\\
+\end{exampleblock}
+
+$\Omega_{c} =\left(\begin{array}{ccc} 
+{0} & {-\omega_{z1} } & {\omega_{y1} } \\ 
+{\omega_{z1} } & {0} & {-\omega_{x1} } \\ 
+{-\omega_{y1} } & {\omega_{x1}} & {0} 
+\end{array}\right)$ $\Omega _{\Gamma } =\left(\begin{array}{ccc} 
+{0} & {-\left(\dot{\lambda }+u\right)\sin \varphi } & {\left(\dot{\lambda }+u\right)\cos \varphi } \\ {\left(\dot{\lambda }+u\right)\sin \varphi } & {0} & {\dot{\varphi }} \\ 
+{-\left(\dot{\lambda }+u\right)\cos \varphi } & {-\dot{\varphi }} & {0} 
+\end{array}\right)$ 
+
+Вектор проекцій суми переносного и кориолісова прискорень на осі гео-графічної СК
+$\begin{array}{l} 
+{\Delta n_{E} =\frac{V_{E} V_{h} }{R_{1} +h} -\frac{V_{E} V_{N} }{R_{1} +h} tg\varphi +2u\left(V_{h} \cos \varphi -V_{N} \sin \varphi \right);} \\ 
+{\Delta n_{N} =\frac{V_{N} V_{h} }{R_{2} +h} +\frac{V_{E}^{2} }{R_{1} +h} tg\varphi +2uV_{E} \sin \varphi ;} \\ {\Delta n_{h} =-\frac{V_{E}^{2} }{R_{1} +h} -\frac{V_{N}^{2} }{R_{2} +h} -2uV_{E} \cos \varphi ;} 
 \end{array}$
-\vspace{3mm}
-$\label{eq:fangle} 
-\begin{array}{l} 
-{\dot{\psi }=(\omega_{y_{\Sigma }}\cos \gamma -\omega_{z_{\Sigma }} \sin \gamma)\sec \vartheta ;} \\ 
-{\dot{\gamma }=\omega_{x_{\Sigma}} +{\rm tg}\vartheta {\rm \; }\left(\omega_{z_{\Sigma}} \sin \gamma -\omega_{y_{\Sigma}} \cos \gamma \right);} \\ 
-{\dot{\vartheta }=\omega_{y_{\Sigma}}\sin \gamma +\omega_{z_{\Sigma }} \cos \gamma;} \\ 
-{\psi_{\text{г}} =-\psi .} \end{array} 
-$
 
-\beamerbutton{Середній темп}
-$\label{eq:maccel} 
-\left[\begin{array}{c} 
-{a_{N}} \\ 
-{a_{H}} \\ 
-{a_{E}} \end{array}\right]=
-B\left[\begin{array}{c} 
-{a_{x_{\text{ЛА}}}} \\ 
-{a_{y_{\text{ЛА}}}} \\ 
-{a_{z_{\text{ЛА}}}} 
-\end{array}\right]$
-\vspace{3mm}
-$\label{eq:mdv} 
-\begin{array}{l} 
-{\dot{V}_{E} =a_{E} -V_{N}(\omega_{H_{V}} +2\Omega_{H} )+V_{H} (\omega_{N_{V}} +2\Omega_{N} );} \\ 
-{\dot{V}_{H} =a_{H} -V_{E}(\omega_{N_{V}} +2\Omega_{N} )+V_{N} \omega_{E_{V}} +g_{H} ;} \\ 
-{\dot{V}_{N} =a_{N} -V_{H} \omega_{E_{V}} +V_{E} (\omega_{H_{V}} +2\Omega_{H} ).} 
-\end{array} 
-$
-\end{column}
+Матриця орієнтації:\\
+$B%(\psi ,\vartheta ,\gamma )
+=\left(\begin{array}{ccc} 
+{\sin \psi \cos \vartheta } & {\cos \psi \sin \gamma -\sin \psi \cos \gamma \sin \vartheta } & {\cos \psi \cos 
+\gamma +\sin \psi \sin \gamma \sin \vartheta } \\ 
+{\cos \psi \cos \vartheta } & {-\sin \psi \sin \gamma -\cos \psi \cos \gamma \sin \vartheta } & {-\sin \psi \cos \gamma +\cos \psi \sin \gamma \sin \vartheta } \\ 
+{\sin \vartheta } & {\cos \gamma \cos \vartheta } & {-\sin \gamma \cos \vartheta } \end{array}\right)$ 
 
-\begin{column}{5cm}
-\beamerbutton{Повільний темп}
-
-$\label{eq:geocord} 
-\begin{array}{l} 
-{\dot{\lambda}=\frac{V_{E}}{(R_{2}+H)\cos B};} \\ 
-{\dot{\varphi}=\frac{V_{N}}{R_{1}+H} ;} \\ 
-{\dot{H}=V_{H}.} 
-\end{array} $
-\vspace{3mm}
-$\label{eq:__8_26_} 
-\begin{array}{l} 
-{\omega_{E_{V}} =-\dot{\varphi};} \\ 
-{\omega_{H_{V}} =\dot{\lambda}{sin}\varphi;} \\ 
-{\omega_{N_{V}} =\dot{\lambda}\cos \varphi;} \\ 
-{\Omega_{N} =\Omega_{\text{З}}\cos \varphi;} \\ 
-{\Omega_{H} =\Omega_{\text{З}}\sin \varphi.} 
-\end{array} $ 
-\vspace{3mm}
-$\label{eq:lomega}
-\left[\begin{array}{c} 
-{\omega_{x_{NHE}}} \\ 
-{\omega_{y_{NHE}}} \\ 
-{\omega_{z_{NHE}}} \end{array}\right]=B^{T} 
-\left[\begin{array}{c} 
-{\omega_{N_{V}} +\Omega_{N}} \\ 
-{\omega_{H_{V}} +\Omega_{H}} \\ 
-{\omega_{E_{V}} +\Omega_{E}} 
-\end{array}\right].$
- 
-\end{column}
-\end{columns}
-
-{\centering \line(1,0){300}\\}
-де: \\
-$\label{eq:bmatrix}
-B=\left[\begin{array}{ccc} 
-{\cos \psi \cos \vartheta } & 
-{\sin \psi \sin \gamma -\cos \psi \sin \vartheta \cos \gamma } & 
-{\sin \psi \cos \gamma +\sin \psi \cos \vartheta \sin \gamma } \\ 
-{\sin \vartheta } & {\cos \vartheta \cos \gamma } & 
-{-\cos \vartheta \sin \gamma } \\ 
-{-\sin \psi \cos \vartheta } & 
-{\cos \psi \sin \gamma +\sin \psi \sin \vartheta \cos \gamma } & 
-{\cos \psi \cos \gamma -\sin \psi\sin \vartheta \sin \gamma } 
-\end{array}\right]. 
-$\\
-\vspace{3mm}
-$\label{eq:gravity} 
-\begin{array}{l}{\frac{1}{(R_{1} +H)} \approx \frac{1}{a}\left[1-e^{2} -\frac{H}{a} -\frac{3}{2} e^{2} \sin ^{2} \varphi\right];} \\ 
-{\frac{1}{(R_{2} +H)} \approx \frac{1}{a} \left[1-\frac{H}{a} -\frac{1}{2} e^{2} \sin ^{2}\varphi\right]  ;} \\ 
-{g_{H} =-g\left(1+5,2884\cdot 10^{-3} \sin ^{2}\varphi \right)\left[1-\frac{2H}{a} \left(1-e\sin ^{2}\varphi \right)\right].} 
+Головні радіуси кривизни обраного земного еліпсоїда:\\
+$\begin{array}{l} 
+{R_{1} =a\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{-\frac{1}{2}};} \\ 
+{R_{2} =a\left(1-e^{2} \right)\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{- \frac{3}{2} } ;} 
 \end{array}$
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Рівняння похибок БІНС} 
-\begin{frame}[plain]
+\begin{frame}[plain,shrink=10]
 \frametitle{Рівняння похибок БІНС}
 \begin{block}{БІНС}
 \tiny
@@ -252,10 +259,10 @@ $\begin{array}{l}{\Delta \dot{V}_{E} =a_{N} \alpha_{h} -a_{h} \alpha_{N} +\sum_{
 Похибка координатного тригранника:\\
 $\label{eq:dasdins} \begin{array}{l} 
 {\dot{\alpha }_{E} =-\omega_{N} \alpha_{h} +\omega_{h} \alpha_{N} -\frac{\Delta V_{N} }{R} -\sum_{i=1}^{3}b_{1,i}\varepsilon_{i} ,} \\
-{\dot{\alpha }_{N} =-\omega_{h} \alpha_{E} +\omega_{E} \alpha_{h} +\frac{\Delta V_{E} }{R} -u\sin \varphi \frac{\Delta R_{N} }{R_{7} }
+{\dot{\alpha }_{N} =-\omega_{h} \alpha_{E} +\omega_{E} \alpha_{h} +\frac{\Delta V_{E} }{R} -u\sin \varphi \frac{\Delta R_{N} }{R_{\text{З}} }
 -\sum_{i=1}^{3}b_{2,i}  \varepsilon_{i} ,} \\ 
 {\dot{\alpha }_{h} =-\omega_{E} \alpha_{N} +\omega_{N} \alpha_{E} +\frac{\Delta V_{E} }{R} tg\varphi +(u\cos \varphi +\frac{V_{E} }{R\cos ^{2} \varphi } )
-\frac{\Delta R_{N} }{R_{7} } -\sum_{i=1}^{3}b_{3,i}\varepsilon_{i} ,} \end{array} $
+\frac{\Delta R_{N} }{R_{\text{З}} } -\sum_{i=1}^{3}b_{3,i}\varepsilon_{i} ,} \end{array} $
 \end{block}
 \end{frame}
 
@@ -294,7 +301,7 @@ $\label{eq:dasdins} \begin{array}{l}
 % Alpha
 {.} & {.} & {.} & {.} & {-\frac{1}{R}} & {.} \\ 
 {.} & {-\frac{u}{R} \sin \varphi} & {.} & {\frac{1}{R}} & {.} & {.} \\ 
-{.} & {\frac{1}{R}_{7} (u\cos \varphi +\frac{\dot{\lambda }}{\cos \varphi })} & {.} & {\frac{tg\varphi }{R}} & {.} & {.} \\ 
+{.} & {\frac{1}{R}_{\text{З}} (u\cos \varphi +\frac{\dot{\lambda }}{\cos \varphi })} & {.} & {\frac{tg\varphi }{R}} & {.} & {.} \\ 
 
 % othe staff
 {.} & {.} & {.} & {.} & {.} & {.} \\
@@ -341,6 +348,30 @@ $\label{eq:dasdins} \begin{array}{l}
 {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
 \end{array}\right);\] 
 
+\end{frame}
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\subsection{Еволюція похибок стаціонарно закріпленої БІНС} 
+\begin{frame}
+\frametitle{Помилка координати стаціонарно закріпленої БІНС}
+
+\begin{figure}[l]
+\includegraphics[scale=0.24]{ins_stat_gyro}
+\includegraphics[scale=0.25]{ins_stat_tilt}
+\caption{\tiny Еволюція похибки за умови, дрейфу гіроскопа $0.01 deg/h$; Еволюція похибки за умови, похибки координатного тригранника $10^{-3} rad$}
+\label{fig:sdins2}
+\end{figure}
+\end{frame}
+
+%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\subsection{Сумарна похибка стаціонарно закріпленої БІНС} 
+\begin{frame}[plain]
+\frametitle{Сумарна похибка стаціонарно закріпленої БІНС}
+\begin{figure}[l]
+\includegraphics[scale=0.45]{ins_stat_sum}
+\caption{\tinyЕволюція сумарної похибки по координаті за умови,
+дрейфу гіроскопа   $0.01 deg/h$,похибки координатного тригранника $10^{-3} rad$, та зміщенням акселерометра $10^{-4} m/s^2$}
+\label{fig:sdins2}
+\end{figure}
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -424,28 +455,28 @@ $\Delta h_{c,k} =\Delta h_{c,k-1} +\sigma_{\xi A} \xi_{k-1}$
 {{\color{violet}\Delta V_{hc}}}
 \end{array} \right]=
 \left[\begin{array}{l}
-{\text{Пом. координ. E}}\\
-{\text{Пом. координ. N}}\\
-{\text{Пом. по висоті}}\\
-{\text{Пом. по швидкості E}}\\
-{\text{Пом. по швидкості N}}\\
-{\text{Пом. по швидкості H}}\\
-{\text{Пом. тригранника E}}\\
-{\text{Пом. тригранника N}}\\
-{\text{Пом. тригранника H}}\\
-{\text{Дрейф гіроскопа E}}\\
-{\text{Дрейф гіроскопа N}}\\
-{\text{Дрейф гіроскопа H}}\\
-{\text{Дрейф акселерометра E}} \\
-{\text{Дрейф акселерометра N}}\\
-{\text{Дрейф акселерометра H}}\\
-{\text{Пом. баровисотоміра}}\\
-{\text{Кор. пом. коорд. СНС E}}\\
-{\text{Кор. пом. коорд. СНС N}}\\
-{\text{Кор. пом. коорд. СНС H}}\\
-{\text{Кор. пом. швид. СНС E}}\\
-{\text{Кор. пом. швид. СНС N}}\\
-{\text{Кор. пом. швид. СНС H}}\\
+{{\color{blue}\text{Пом. координ. E}}}\\
+{{\color{blue}\text{Пом. координ. N}}}\\
+{{\color{blue}\text{Пом. по висоті}}}\\
+{{\color{blue}\text{Пом. по швидкості E}}}\\
+{{\color{blue}\text{Пом. по швидкості N}}}\\
+{{\color{blue}\text{Пом. по швидкості H}}}\\
+{{\color{blue}\text{Пом. тригранника E}}}\\
+{{\color{blue}\text{Пом. тригранника N}}}\\
+{{\color{blue}\text{Пом. тригранника H}}}\\
+{{\color{blue}\text{Дрейф гіроскопа E}}}\\
+{{\color{blue}\text{Дрейф гіроскопа N}}}\\
+{{\color{blue}\text{Дрейф гіроскопа H}}}\\
+{{\color{blue}\text{Дрейф акселерометра E}}} \\
+{{\color{blue}\text{Дрейф акселерометра N}}}\\
+{{\color{blue}\text{Дрейф акселерометра H}}}\\
+{{\color{red}\text{Пом. баровисотоміра}}}\\
+{{\color{violet}\text{Кор. пом. коорд. СНС E}}}\\
+{{\color{violet}\text{Кор. пом. коорд. СНС N}}}\\
+{{\color{violet}\text{Кор. пом. коорд. СНС H}}}\\
+{{\color{violet}\text{Кор. пом. швид. СНС E}}}\\
+{{\color{violet}\text{Кор. пом. швид. СНС N}}}\\
+{{\color{violet}\text{Кор. пом. швид. СНС H}}}\\
 \end{array} \right]  
 \end{equation*}
 
@@ -483,41 +514,7 @@ $\bar{Y}_{k} =
 \end{columns}
 \end{frame}
 
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Еволюція похибок стаціонарно закріпленої БІНС} 
-\begin{frame}
-\frametitle{Помилка координати стаціонарно закріпленої БІНС}
 
-\begin{figure}[l]
-\includegraphics[scale=0.24]{ins_stat_gyro}
-\includegraphics[scale=0.25]{ins_stat_tilt}
-\caption{\tiny Еволюція похибки за умови, дрейфу гіроскопа $0.01 deg/h$; Еволюція похибки за умови, похибки координатного тригранника $10^{-3} rad$}
-\label{fig:sdins2}
-\end{figure}
-\end{frame}
-
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Сумарна похибка стаціонарно закріпленої БІНС} 
-\begin{frame}[plain]
-\frametitle{Сумарна похибка стаціонарно закріпленої БІНС}
-\begin{figure}[l]
-\includegraphics[scale=0.45]{ins_stat_sum}
-\caption{\tinyЕволюція сумарної похибки по координаті за умови,
-дрейфу гіроскопа   $0.01 deg/h$,похибки координатного тригранника $10^{-3} rad$, та зміщенням акселерометра $10^{-4} m/s^2$}
-\label{fig:sdins2}
-\end{figure}
-\end{frame}
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Траєкторія руху ЛА тільки за БІНС} 
-\begin{frame}%[plain]
-\frametitle{Траєкторія руху ЛА тільки за БІНС}
-\noindent
-\begin{figure}[l]
-\noindent\includegraphics[scale=0.4]{only_ins}
-% \caption{\tiny Траєкторія руху ЛА тільки за БІНС }
-\end{figure}
-
-\end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Навігаційний фільтр Калмана} 
 \begin{frame}[plain]
@@ -543,21 +540,19 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Траєкторія руху ЛА} 
+\section{Моделювання ІСНС} 
+\subsection{Програмне забезпечення} 
 \begin{frame}%[plain]
-\frametitle{Траєкторія руху ЛА та кути крену, курса і тангажа}
-\noindent
-\begin{figure}[l]
-\noindent\includegraphics[scale=0.28]{path_3d}
-\includegraphics[scale=0.35]{path_PYR}
-\caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
+\frametitle{Інтерфейс програми}
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{3d_soft}
+% \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
-
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\section{Результати моделювання ІСНС} 
-\subsection{Поихибка оцінки по координаті} 
+\subsection{Похибка оцінки по координаті} 
 \begin{frame}%[plain]
 \frametitle{Поихибка оцінки по координаті}
 \noindent
@@ -568,7 +563,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Поихибка оцінки по швидкості} 
+\subsection{Похибка оцінки по швидкості} 
 \begin{frame}%[plain]
 \frametitle{Поихибка оцінки по швидкості}
 \noindent
@@ -616,23 +611,35 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \frametitle{Поихибка оцінки курсу, крена, тангажа}
 \begin{figure}
 \centering
-\includegraphics[scale=0.4]{ErrEstAngle2}
+\includegraphics[scale=0.25]{ErrEstAngle3}
 % \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
 \end{figure}
 \end{frame}
+% %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% \subsection{Сходимість коваріацій параметрів} 
+% \begin{frame}%[plain]
+% \frametitle{Сходимість коваріацій параметрів}
+% \begin{figure}
+% \centering
+% \includegraphics[ width=60mm, height=30.0mm]{cov_v}
+% \includegraphics[ width=60mm, height=30.0mm]{cov_alpha}\\
+% \includegraphics[ width=60mm, height=30.0mm]{cov_eps}
+% \includegraphics[ width=60mm, height=30.0mm]{cov_a}
+% \caption{\tiny Сходимість нормалізованих коваріацій швидкостей, орієнтації, дрейфу гіроскопів та зміщення акселерометрів}
+% \end{figure}
+% \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Сходимість коваріацій параметрів} 
+\subsection{Помилка при відмові СНС} 
 \begin{frame}%[plain]
-\frametitle{Сходимість коваріацій параметрів}
+\frametitle{Радіомовчання з 400-600с}
 \begin{figure}
-\centering
-\includegraphics[ width=60mm, height=30.0mm]{cov_v}
-\includegraphics[ width=60mm, height=30.0mm]{cov_alpha}\\
-\includegraphics[ width=60mm, height=30.0mm]{cov_eps}
-\includegraphics[ width=60mm, height=30.0mm]{cov_a}
-\caption{\tiny Сходимість нормалізованих коваріацій швидкостей, орієнтації, дрейфу гіроскопів та зміщення акселерометрів}
+\includegraphics[scale=0.3]{snsless_400_600_R}\\
+\includegraphics[scale=0.3]{snsless_400_600_V}\\
+\includegraphics[scale=0.3]{snsless_400_600_alpha}\\
 \end{figure}
 \end{frame}
+
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Траєкторія руху ЛА за БІНС і ФК} 
 \begin{frame}%[plain]
@@ -655,7 +662,7 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 % \caption{Середньоквадратичні помилки: }
 \small
 \begin{tabular}{|p{30mm}|p{20mm}|p{20mm}|p{20mm}|} \hline
-N&East&North&Height \\ \hline
+\textnumero&East&North&Height \\ \hline
 Координати, м & 5.8792050244& 4.6476224404& 4.8677711489 \\ \hline 
 Швидкості, м/с& 0.0236254078& 0.0235478062& 0.0231813797 \\ \hline 
 Орієнтація, рад& 8.42E-005& 0.000133569& 0.0004735418 \\ \hline 
@@ -665,19 +672,6 @@ N&East&North&Height \\ \hline
 \label{tab:results}
 \end{table}
 \end{block}
-\end{frame}
-
-
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\section{Програмне забезпечення} 
-\subsection{Інтерфейс програми} 
-\begin{frame}%[plain]
-\frametitle{Інтерфейс програми}
-\begin{figure}
-\centering
-\includegraphics[scale=0.25]{3d_soft}
-% \caption{\tiny Траєкторія руху ЛА та його кути орієнтації }
-\end{figure}
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -690,8 +684,4 @@ N&East&North&Height \\ \hline
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
-
 \end{document}

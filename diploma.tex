@@ -11,8 +11,8 @@
 % 4.  Separate sections consults (for ex.: ecology and labour protection).
 % 5.  Technical task.
 % 6.  Annotation.
-% 7.  Nomenclature list.
-% 8.  Table of Contents.
+% 7.  Table of Contents.
+% 8.  Nomenclature list.
 % 9.  Diploma paper itself.
 % 10. Conclusions.
 % 11. Reference list.
@@ -84,15 +84,28 @@
 \newpage
 
 %%%%--------------------[DELETE THIS]---------------------%%%%%
-\subsection*{TODO}
-\begin{enumerate}
- \item Посатавити номер наказу та дату видачи наказу;
- \item Уточнити номер НДР;
- \item Перевірити Технічне завдання;
- \item Перевірити нумерацію сторінок;
- \item Перевірити і додати джерела до списку літератури;
- \item Можливо зменшити шрифт в прізвищах.
-\end{enumerate}
+% \subsection*{TO DO}
+% \begin{enumerate}
+%  \item Посатавити номер наказу та дату видачи наказу;
+%  \item Уточнити номер НДР;
+%  \item Перевірити Технічне завдання;
+%  \item Перевірити нумерацію сторінок;
+%  \item Перевірити і додати джерела до списку літератури;
+%  \item Можливо зменшити шрифт в прізвищах.
+% \end{enumerate}
+
+%% Empty page for title
+\newpage
+\ESKDthisStyle{empty}
+\mbox{}
+
+% 2 empty pages for task
+\newpage
+\ESKDthisStyle{empty}
+\mbox{}
+\newpage
+\ESKDthisStyle{empty}
+\mbox{}
 
 %% Technical task
 \newpage
@@ -111,9 +124,10 @@
 %% Nomenclature
 \newpage
 \ESKDthisStyle{formIIab}
-\addcontentsline{toc}{section}{Перелік позначень}
+\addcontentsline{toc}{section}{ПЕРЕЛІК УМОВНИХ СКОРОЧЕНЬ}
 \printnomenclature
 
+%% Intro pages
 \newpage
 \ESKDthisStyle{formIIab}
 \include{introduction}
