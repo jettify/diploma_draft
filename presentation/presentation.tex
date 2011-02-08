@@ -13,12 +13,12 @@
 \usepackage{textcomp}
 
 \graphicspath{{fig/},{software/}}       % look up folders for figures
-
+\setbeamertemplate{footline}[page number] % insert number of slides
 \usepackage{color}                      % you can colour your formulas with this, just use ${\color{red} E=mc^2}$
 \usepackage{helvet} 	                % set font family for whole document
 \usefonttheme[onlymath]{serif}          % Set font family only for math mode
 
-% \beamertemplatenavigationsymbolsempty
+\beamertemplatenavigationsymbolsempty   % hide naviagation bar
 
 % If you want divide slide on two parts just use code:
 % \begin{columns}[t]
@@ -41,7 +41,7 @@
 \title{Інтегрована інерціально-супутникова система навігації, що базується на принципах комплексної обробки інформації
 з використанням калманівської фільтрації}  
 % \author{доповідач:Микола Новік\\ керівник: Мар’ясова Т.І.}
-\author{Микола Новік}
+\author{Доповідач: Микола Новік}
 \date{\today} 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % First Slide, title page
@@ -50,14 +50,14 @@
 \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % Just print table of contents
-\begin{frame}[plain]
-\frametitle{Зміст доповіді}
-\tiny
-\tableofcontents
-\end{frame} 
+% \begin{frame}[plain]
+% \frametitle{Зміст доповіді}
+% \tiny
+% \tableofcontents
+% \end{frame} 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % Intro
-\section{Постановка задачі та вибір системи} 
+\section{Постановка задачі} 
 \subsection{Постановка задачі та вибір системи} 
 \begin{frame}\frametitle{Постановка задачі комплексування}
 \small
@@ -70,7 +70,7 @@
 \item  пiдвищення точностi визначення координат, висоти, швидкостi i часу споживача;
 \item  уточнення кутiв орiєнтацiї (курсу, крену i тангажа);
 \item  оцiнка й уточнення параметрiв калiбрування навiгацiйних датчикiв,
-таких, як дрейфи гiроскопiв, масштабнi коефiцiєнти, зсуви акселерометрiв тощо;
+таких, як дрейфи гiроскопiв, масштабнi коефiцiєнти, зсуви нуля акселерометрів тощо;
 \item  забезпечення на цiй основi безперервностi навiгацiйних визначень на всiх етапах руху, у тому числi i при тимчасовiй непрацездатностi приймача СНС у випадках впливу завад або енергiйних маневрiв ЛА.
 
 \end{enumerate}
@@ -83,29 +83,22 @@
 \begin{frame}\frametitle{Варіанти інтегрування ІСНС} 
 
 \tiny
-\begin{block}{Роздільна}
+\begin{block}{Роздільна схема}
 Надмірність, обмеженість похибок оцінок місця розташування і швидкості, 
 наявність інформації про орієнтацію і кутову швидкість, висока швидкість видачі інформації, 
 мінімальні зміни в бортовій апаратурі
 \end{block}
 
-\begin{exampleblock}{Слабко зв'язана}
-Усі перераховані особливості роздільних систем, плюс більш 
-швидке відновлення слідкування за кодом і фазою сигналів СНС, виставлення та калібрування 
+\begin{exampleblock}{Слабко зв'язана схема}
+Усі перераховані особливості роздільних систем, плюс більш швидке відновлення слідкування за кодом і фазою сигналів СНС, виставлення та калібрування 
 БІНС у польоті, як наслідок -- підвищена точність під час відсутності сигналу СНС
 \end{exampleblock}
 
 
-\begin{block}{Жорстко зв'язана}
+\begin{block}{Жорстко зв'язана схема}
 Подальше поліпшення точності і калібрування, підвищена стійкість слідкування 
-за сигналами СНС при маневрах ЛА, підвищена завадостійкість 
-\end{block}
-
-\begin{block}{Глибоко інтегрована}
-Єдиний фільтр усуває проблему ``каскадного'' включення 
-фільтрів, компактність, знижені вимоги з енергозабезпечення. Недоліки: вектор стану 
-містить до 40 компонентів, тому фільтр складно реалізувати; необхідність розробки 
-спеціальних датчиків 
+за сигналами СНС при маневрах ЛА, підвищена завадостійкість, компактність, знижені вимоги з енергозабезпечення. Вектор стану містить до 40 компонентів, тому фільтр складно реалізувати; необхідність розробки 
+спеціальних датчиків.
 \end{block}
 \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -138,7 +131,7 @@
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Траєкторія руху ЛА та кути крену, курса і тангажа} 
-\begin{frame}[plain,shrink=10]
+\begin{frame}[ shrink=10]
 \frametitle{Траєкторія руху ЛА та кути крену, курса і тангажа}
 \noindent
 \begin{figure}[l]
@@ -169,8 +162,8 @@ $\left \{\begin{array}{l}
 {g(h,\varphi)=g_{e} [1-2\frac{h(t)}{a} +\frac{3}{4} e^{2} \sin ^{2} \varphi (t)];} 
 \end{array}\right.$
 $\left \{\begin{array}{l} 
-{\vartheta(t)=arctg[V_{h} (t)/V_{r} (t)];} \\ 
-{\psi (t)=arctg[V_{E}(t)/V_{N} (t)];} \\ 
+{\vartheta(t)=arctg2[V_{h} (t)/V_{r} (t)];} \\ 
+{\psi (t)=arctg2[V_{E}(t)/V_{N} (t)];} \\ 
 {\gamma (t)=K_{\gamma }\frac{V_{N}(t)\dot{V}_{E}(t)-V_{E}(t)\dot{V}_{N}(t)}{V_{r}(t)\cos v(t)},}
  \end{array}\right.$
 \end{column}
@@ -179,56 +172,73 @@ $\left \{\begin{array}{l}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 \section{Модель системи }
+\subsection{Алгоритми роботи БІНС}
 
-\subsection{Алгоритми роботи БІНС} 
-\begin{frame}[plain,shrink=10]
+ 
+\begin{frame}
 \frametitle{Алгоритми роботи БІНС}
+
+\begin{figure}[here]
+\centering
+\includegraphics[scale=0.2]{sdins_algorithm2}
+\end{figure}
 \tiny
-\begin{exampleblock}{Рівняння БІНС}
+
+\begin{columns}[t]
+\begin{column}{5cm}
 \beamerbutton{Координати}\\
 $\left\{ \begin{array}{l} 
 {\dot{\lambda }=\frac{V_{E} \left(t\right)}{\left(R_{1} +h\right)\cos \varphi \left(t\right)} } \\ 
 {\dot{\varphi }=\frac{V_{N} \left(t\right)}{\left(R_{2} +h\right)} } \\ 
 {\dot{h}=V_{h} \left(t\right)} \end{array}\right .$    \\ 
-\beamerbutton{Швидкості}\\
+
+\end{column}
+\begin{column}{5cm}
+ \beamerbutton{Швидкості}\\
 $\dot{\bar{V}}=B\bar{a}{}_{c} -\Delta \bar{n}\left(t\right)+\bar{g}_{T} $\\
 \beamerbutton{Орієнтація}\\
 $\dot{B}=B\Omega _{c} -\Omega _{\Gamma } B$\\
-\end{exampleblock}
-
-$\Omega_{c} =\left(\begin{array}{ccc} 
-{0} & {-\omega_{z1} } & {\omega_{y1} } \\ 
-{\omega_{z1} } & {0} & {-\omega_{x1} } \\ 
-{-\omega_{y1} } & {\omega_{x1}} & {0} 
-\end{array}\right)$ $\Omega _{\Gamma } =\left(\begin{array}{ccc} 
-{0} & {-\left(\dot{\lambda }+u\right)\sin \varphi } & {\left(\dot{\lambda }+u\right)\cos \varphi } \\ {\left(\dot{\lambda }+u\right)\sin \varphi } & {0} & {\dot{\varphi }} \\ 
-{-\left(\dot{\lambda }+u\right)\cos \varphi } & {-\dot{\varphi }} & {0} 
-\end{array}\right)$ 
-
-Вектор проекцій суми переносного и кориолісова прискорень на осі гео-графічної СК
-$\begin{array}{l} 
-{\Delta n_{E} =\frac{V_{E} V_{h} }{R_{1} +h} -\frac{V_{E} V_{N} }{R_{1} +h} tg\varphi +2u\left(V_{h} \cos \varphi -V_{N} \sin \varphi \right);} \\ 
-{\Delta n_{N} =\frac{V_{N} V_{h} }{R_{2} +h} +\frac{V_{E}^{2} }{R_{1} +h} tg\varphi +2uV_{E} \sin \varphi ;} \\ {\Delta n_{h} =-\frac{V_{E}^{2} }{R_{1} +h} -\frac{V_{N}^{2} }{R_{2} +h} -2uV_{E} \cos \varphi ;} 
-\end{array}$
+\end{column}
+\end{columns}
 
 Матриця орієнтації:\\
 $B%(\psi ,\vartheta ,\gamma )
-=\left(\begin{array}{ccc} 
+=\left[\begin{array}{ccc} 
 {\sin \psi \cos \vartheta } & {\cos \psi \sin \gamma -\sin \psi \cos \gamma \sin \vartheta } & {\cos \psi \cos 
 \gamma +\sin \psi \sin \gamma \sin \vartheta } \\ 
 {\cos \psi \cos \vartheta } & {-\sin \psi \sin \gamma -\cos \psi \cos \gamma \sin \vartheta } & {-\sin \psi \cos \gamma +\cos \psi \sin \gamma \sin \vartheta } \\ 
-{\sin \vartheta } & {\cos \gamma \cos \vartheta } & {-\sin \gamma \cos \vartheta } \end{array}\right)$ 
+{\sin \vartheta } & {\cos \gamma \cos \vartheta } & {-\sin \gamma \cos \vartheta } \end{array}\right]$
 
-Головні радіуси кривизни обраного земного еліпсоїда:\\
-$\begin{array}{l} 
-{R_{1} =a\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{-\frac{1}{2}};} \\ 
-{R_{2} =a\left(1-e^{2} \right)\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{- \frac{3}{2} } ;} 
-\end{array}$
+
+% \end{block}
+
+% $\Omega_{c} =\left[\begin{array}{ccc} 
+% {0} & {-\omega_{z1} } & {\omega_{y1} } \\ 
+% {\omega_{z1} } & {0} & {-\omega_{x1} } \\ 
+% {-\omega_{y1} } & {\omega_{x1}} & {0} 
+% \end{array}\right]$ $\Omega _{\Gamma } =\left[\begin{array}{ccc} 
+% {0} & {-\left(\dot{\lambda }+u\right)\sin \varphi } & {\left(\dot{\lambda }+u\right)\cos \varphi } \\ {\left(\dot{\lambda }+u\right)\sin \varphi } & {0} & {\dot{\varphi }} \\ 
+% {-\left(\dot{\lambda }+u\right)\cos \varphi } & {-\dot{\varphi }} & {0} 
+% \end{array}\right]$ 
+% 
+% Вектор проекцій суми переносного и кориолісова прискорень на осі гео-графічної СК
+% $\begin{array}{l} 
+% {\Delta n_{E} =\frac{V_{E} V_{h} }{R_{1} +h} -\frac{V_{E} V_{N} }{R_{1} +h} tg\varphi +2u\left(V_{h} \cos \varphi -V_{N} \sin \varphi \right);} \\ 
+% {\Delta n_{N} =\frac{V_{N} V_{h} }{R_{2} +h} +\frac{V_{E}^{2} }{R_{1} +h} tg\varphi +2uV_{E} \sin \varphi ;} \\ {\Delta n_{h} =-\frac{V_{E}^{2} }{R_{1} +h} -\frac{V_{N}^{2} }{R_{2} +h} -2uV_{E} \cos \varphi ;} 
+% \end{array}$
+
+
+
+% Головні радіуси кривизни обраного земного еліпсоїда:\\
+% $\begin{array}{l} 
+% {R_{1} =a\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{-\frac{1}{2}};} \\ 
+% {R_{2} =a\left(1-e^{2} \right)\left[1-e^{2} \sin ^{2} \varphi (t)\right]^{- \frac{3}{2} } ;} 
+% \end{array}$
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Рівняння похибок БІНС} 
-\begin{frame}[plain,shrink=10]
+\begin{frame}[ shrink=10]
 \frametitle{Рівняння похибок БІНС}
 \begin{block}{БІНС}
 \tiny
@@ -256,7 +266,7 @@ $\begin{array}{l}{\Delta \dot{V}_{E} =a_{N} \alpha_{h} -a_{h} \alpha_{N} +\sum_{
 \end{array}\label{eq:dVsdins}$
 
 {\centering \line(1,0){300}\\}
-Похибка координатного тригранника:\\
+Похибка орієнтації координатного тригранника:\\
 $\label{eq:dasdins} \begin{array}{l} 
 {\dot{\alpha }_{E} =-\omega_{N} \alpha_{h} +\omega_{h} \alpha_{N} -\frac{\Delta V_{N} }{R} -\sum_{i=1}^{3}b_{1,i}\varepsilon_{i} ,} \\
 {\dot{\alpha }_{N} =-\omega_{h} \alpha_{E} +\omega_{E} \alpha_{h} +\frac{\Delta V_{E} }{R} -u\sin \varphi \frac{\Delta R_{N} }{R_{\text{З}} }
@@ -268,11 +278,11 @@ $\label{eq:dasdins} \begin{array}{l}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Матриця динаміки БІНС} 
-\begin{frame}[plain,shrink=10]
+\begin{frame}[ shrink=10]
 \frametitle{Матриця динаміки БІНС}
 \small
 % F_{p,k}
-\[F_{p,k} = \left(\begin{array}{cccc cc}
+\[F_{p,k} = \left[\begin{array}{cccc cc}
 % {1} & {2} & {3} & {4} & {5} & {6} & {7} & {8} & {9} & {0} & {1} & {2} & {3} & {4} & {5}\\ 
 % Position
 {.} & {\frac{\dot{\lambda }}{R_{\text{З}} } tg\varphi;} & {\frac{-\dot{\lambda }R_{\text{З}} }{R}} & {\frac{R_{\text{З}} }{R\cos \varphi }} & {.} & {.} \\
@@ -346,7 +356,7 @@ $\label{eq:dasdins} \begin{array}{l}
 {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\
 {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\
 {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.} & {.}\\ 
-\end{array}\right);\] 
+\end{array}\right];\] 
 
 \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -355,8 +365,9 @@ $\label{eq:dasdins} \begin{array}{l}
 \frametitle{Помилка координати стаціонарно закріпленої БІНС}
 
 \begin{figure}[l]
-\includegraphics[scale=0.24]{ins_stat_gyro}
 \includegraphics[scale=0.25]{ins_stat_tilt}
+\includegraphics[scale=0.24]{ins_stat_gyro}
+
 \caption{\tiny Еволюція похибки за умови, дрейфу гіроскопа $0.01 deg/h$; Еволюція похибки за умови, похибки координатного тригранника $10^{-3} rad$}
 \label{fig:sdins2}
 \end{figure}
@@ -364,7 +375,7 @@ $\label{eq:dasdins} \begin{array}{l}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Сумарна похибка стаціонарно закріпленої БІНС} 
-\begin{frame}[plain]
+\begin{frame} 
 \frametitle{Сумарна похибка стаціонарно закріпленої БІНС}
 \begin{figure}[l]
 \includegraphics[scale=0.45]{ins_stat_sum}
@@ -376,23 +387,23 @@ $\label{eq:dasdins} \begin{array}{l}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Рівняння похибок СНС та БВ} 
-\begin{frame}[plain]
+\begin{frame} 
 \frametitle{Рівняння похибок СНС та БВ}
 \tiny
 \begin{block}{СНС}
 Помилки СНС:\\
 $\begin{array}{l} 
-{\Delta R_{Es,k} =\Delta R_{Ec,k} +\frac{\sigma_{Rs} }{\cos \varphi_{k} } \eta_{REs,k} +\frac{\sigma_{\delta Rs} }{\cos \varphi_{k} } \eta_{\delta RE,k} ;} \\ 
-{\Delta R_{Ns,k} =\Delta R_{Nc,k} +\sigma_{Rs} \eta_{RNs,k} +\sigma_{\delta Rs} \eta_{\delta RN,k} ;} \\ 
-{\Delta H_{s,k} =\Delta H_{c,k} +\sigma_{Hs} \eta_{Hs,k} +\sigma_{\delta Rs} \eta_{\delta H,k} }\\ 
-{\Delta V_{ls,k} =\Delta V_{lc,k} +\sigma_{Vs} \eta_{V\, ls,k} +\sigma_{\delta Vs} \eta_{\delta V\, ls,k}, \text{при } l=E,N,H;} 
+{\Delta R_{Es,k} =\Delta R_{Ec,k} +\frac{\sigma_{Rs} }{\cos \varphi_{k} } \eta_{REs,k} +{\color{blue}\frac{\sigma_{\delta Rs} }{\cos \varphi_{k} } \eta_{\delta RE,k}} ;} \\ 
+{\Delta R_{Ns,k} =\Delta R_{Nc,k} +\sigma_{Rs} \eta_{RNs,k} +{\color{blue}\sigma_{\delta Rs} \eta_{\delta RN,k}} ;} \\ 
+{\Delta H_{s,k} =\Delta H_{c,k} +\sigma_{Hs} \eta_{Hs,k} +{\color{blue}\sigma_{\delta Rs} \eta_{\delta H,k}} }\\ 
+{\Delta V_{ls,k} =\Delta V_{lc,k} +\sigma_{Vs} \eta_{V\, ls,k} +{\color{blue}\sigma_{\delta Vs} \eta_{\delta V\, ls,k}}, \text{при } l=E,N,H;} 
 \end{array}$\\
 Корельовані помилки СНС:\\
 $\begin{array}{l} 
-{\Delta R_{Ec,k}=W_{R} \Delta R_{Ec,k-1} +q_{R} \frac{\sigma_{Rc} }{\cos \varphi_{k} } \eta_{REc,k} +\frac{\sigma_{\delta RC} }{\cos \varphi_{k} } \eta_{\delta REc,k} ;} \\ 
-{\Delta R_{Nc,k}=W_{R} \Delta R_{Nc,k-1} +q_{R} \sigma_{Rc} \eta_{RNc,k} +\sigma_{\delta RC} \eta_{\delta RNc,k} ;} \\ 
-{\Delta H_{c,k}=W_{R}  \Delta H_{c,k-1}  +q_{R} \sigma_{Hc} \eta_{Hc,k} +\sigma_{\delta Hc} \eta_{\delta Hc,k} ;} \\ 
-{\Delta V_{lc,k} =W_{V} \Delta V_{lc,k-1} +q_{V}\sigma_{Vc} \eta_{V lc,k} +\sigma_{\delta Vc} \eta_{\delta V lc,k}, \text{при } l=E,N,H,} 
+{\Delta R_{Ec,k}=W_{R} \Delta R_{Ec,k-1} +q_{R} \frac{\sigma_{Rc} }{\cos \varphi_{k} } \eta_{REc,k} +{\color{blue} \frac{\sigma_{\delta RC} }{\cos \varphi_{k} } \eta_{\delta REc,k}} ;} \\ 
+{\Delta R_{Nc,k}=W_{R} \Delta R_{Nc,k-1} +q_{R} \sigma_{Rc} \eta_{RNc,k} +{\color{blue}\sigma_{\delta RC} \eta_{\delta RNc,k}} ;} \\ 
+{\Delta H_{c,k}=W_{R}  \Delta H_{c,k-1}  +q_{R} \sigma_{Hc} \eta_{Hc,k} +{\color{blue}\sigma_{\delta Hc} \eta_{\delta Hc,k}} ;} \\ 
+{\Delta V_{lc,k} =W_{V} \Delta V_{lc,k-1} +q_{V}\sigma_{Vc} \eta_{V lc,k} +{\color{blue}\sigma_{\delta Vc} \eta_{\delta V lc,k}}, \text{при } l=E,N,H,} 
 \end{array} $\\
 де:
 $\begin{array}{l}
@@ -403,14 +414,14 @@ $\begin{array}{l}
 
 \end{array}$\\
 Матриця динаміки корельованих поихибок СНС:
-$F_{sns} =\left(\begin{array}{cccccccc} 
+$F_{sns} =\left[\begin{array}{cccccccc} 
 {W_{R}} & {.} & {.} & {.} & {.} & {.} \\ 
 {.} & {W_{R} } & {.} & {.} & {.} & {.} \\ 
 {.} & {.} & {W_{R} } & {.} & {.} & {.} \\ 
 {.} & {.} & {.} & {W_{V} } & {.} & {.} \\ 
 {.} & {.} & {.} & {.} & {W_{V} } & {.} \\ 
 {.} & {.} & {.} & {.} & {.} & {W_{V} } 
-\end{array}\right) 
+\end{array}\right] 
 $
 \end{block}
 
@@ -488,19 +499,19 @@ $\Delta h_{c,k} =\Delta h_{c,k-1} +\sigma_{\xi A} \xi_{k-1}$
 
 $\bar{X}_{p,k+1} =\Phi_{p,k} \bar{X}_{p,k} +G_{p,k} \bar{\xi }_{k}$ \\
 Матриця динаміки системи\\
-$ F_{p,k} =\left(\begin{array}{ccc} 
+$ F_{p,k} =\left[\begin{array}{ccc} 
 {F_{k} } & {.} & {.} \\
 {.} & {F_{bv}} & {.} \\
 {.} & {.} & {F_{sns}} \\
-\end{array}\right);$
+\end{array}\right];$
 Коваріаційна матриця шумів\\
-$Q_{p,k} =\left(\begin{array}{ccc} 
+$Q_{p,k} =\left[\begin{array}{ccc} 
 {Q_{k} } & {.} & {.} \\ 
 {.} & {\sigma_{\text{БВ}} \sqrt{\Delta t}} & {.} \\ 
-{.} & {.} & {G_{s,k} } \end{array}\right);$
+{.} & {.} & {G_{s,k} } \end{array}\right];$
 Вимірювання\\
 $\bar{Y}_{k} = 
-\left(\begin{array}{l}
+\left[\begin{array}{l}
 {\tilde{h}_{k} -\tilde{h}_{\text{БВ},k},}\\
 {\tilde{R}_{E,K} -\tilde{R}_{ES,k},}\\
 {\tilde{R}_{N,K} -\tilde{R}_{NS,k},}\\
@@ -509,7 +520,7 @@ $\bar{Y}_{k} =
 {\tilde{V}_{N,k} -\tilde{V}_{NS,k},}\\
 {\tilde{V}_{h,k} -\tilde{V}_{hS,k},}\\
 {\tilde{h}_{\text{БВ}} -\tilde{h}_{s,k}}
-\end{array} \right) $
+\end{array} \right] $
 \end{column}
 \end{columns}
 \end{frame}
@@ -517,7 +528,7 @@ $\bar{Y}_{k} =
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Навігаційний фільтр Калмана} 
-\begin{frame}[plain]
+\begin{frame}%[plain]
 \frametitle{Навігаційний фільтр Калмана}
 \begin{figure}[l]
 \includegraphics[scale=0.15]{kalman_diag}
@@ -544,23 +555,23 @@ $K_{k} =P_{k}(-) H^{T} (HP_{k}(-) H^{T} +Q_{p,k} Q_{p,k} ^{T} )^{-1} $
 \frametitle{Виправлення координат}
 Виправлення координат:\\
 $\begin{array}{l} 
-{h^{+}_{i} =h^{-}_{i} -\Delta \hat{h}_{i} ;} \\ 
-{\varphi_{i}^{+} =\varphi ^{-}_{i} -\frac{\Delta \hat{R}_{Ni} }{R_{\text{З}} } ;} \\ 
-{\lambda_{i}^{+} =\lambda ^{-}_{i} -\frac{\Delta \hat{R}_{Ei} }{R_{\text{З}} } ;} \\ 
+{h(+)_{i} =h(-)_{i} -\Delta \hat{h}_{i} ;} \\ 
+{\varphi_{i}(+) =\varphi (-)_{i} -\frac{\Delta \hat{R}_{Ni} }{R_{\text{З}} } ;} \\ 
+{\lambda_{i}(+) =\lambda (-)_{i} -\frac{\Delta \hat{R}_{Ei} }{R_{\text{З}} } ;} \\ 
 \end{array} $\\
 Виправлення швидкостей:\\
 $\begin{array}{l}
-{V^{+}_{E}=V^{-}_{E} -\Delta \hat{V}_{E}; } \\
-{V^{+}_{N}=V^{-}_{N} -\Delta \hat{V}_{N}; } \\
-{V^{+}_{h}=V^{-}_{h} -\Delta \hat{V}_{h}. } 
+{V(+)_{E}=V(-)_{E} -\Delta \hat{V}_{E}; } \\
+{V(+)_{N}=V(-)_{N} -\Delta \hat{V}_{N}; } \\
+{V(+)_{h}=V(-)_{h} -\Delta \hat{V}_{h}. } 
 \end{array} $\\
 Виправлення орієнтації географічної СК:\\
-$\stackrel{\frown}{B}^{+}_{i} =\Delta B_{i} \stackrel{\frown}{B}^{-}_{i}$
+$\hat{B}(+)_{i} =\Delta B_{i} \hat{B}(-)_{i}$
 
-$\Delta B_{i} =\left(\begin{array}{ccc} 
+$\Delta B_{i} =\left[\begin{array}{ccc} 
 {1} & {-\hat{\alpha }_{h,i} } & {\hat{\alpha }_{N,i} }\\ 
 {\hat{\alpha }_{h,i} } & {1} & {-\hat{\alpha }_{E,i} }\\ 
-{-\hat{\alpha }_{N,i} } & {\hat{\alpha }_{E,i} } & {1} \end{array}\right)$.                                              
+{-\hat{\alpha }_{N,i} } & {\hat{\alpha }_{E,i} } & {1} \end{array}\right]$.                                              
 %  
 % $\stackrel{\frown}{\alpha }_{E,i} $, 
 % $\stackrel{\frown}{\alpha }_{N,i} $, 
@@ -585,7 +596,7 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Похибка оцінки по координаті} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки по координаті}
+\frametitle{Похибка оцінки по координаті}
 \noindent
 \begin{figure}
 \includegraphics[scale=0.3]{ErrEstCovR}
@@ -596,7 +607,7 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Похибка оцінки по швидкості} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки по швидкості}
+\frametitle{Похибка оцінки по швидкості}
 \noindent
 \begin{figure}
 \includegraphics[scale=0.3]{ErrEstCovV}
@@ -605,9 +616,9 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Поихибка оцінки по орієнтації} 
+\subsection{Похибка оцінки по орієнтації} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки по орієнтації}
+\frametitle{Похибка оцінки по орієнтації}
 \noindent
 \begin{figure}
 \includegraphics[scale=0.3]{ErrEstCovAlph}
@@ -616,9 +627,9 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Поихибка оцінки дрейфів гіроскопів} 
+\subsection{Похибка оцінки дрейфів гіроскопів} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки дрейфів гіроскопів}
+\frametitle{Похибка оцінки дрейфів гіроскопів}
 \noindent
 \begin{figure}
 \includegraphics[scale=0.3]{ErrEstCovGyro}
@@ -627,9 +638,9 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 \end{frame}
 
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Поихибка оцінки зміщення акселерометрів} 
+\subsection{Похибка оцінки зміщення акселерометрів} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки зміщення акселерометрів}
+\frametitle{Похибка оцінки зміщення акселерометрів}
 \begin{figure}
 \centering
 \includegraphics[scale=0.3]{ErrEstCovAcc}
@@ -637,9 +648,9 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 \end{figure}
 \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Поихибка оцінки курсу, крена, тангажа} 
+\subsection{Похибка оцінки курсу, крена, тангажа} 
 \begin{frame}%[plain]
-\frametitle{Поихибка оцінки курсу, крена, тангажа}
+\frametitle{Похибка оцінки курсу, крена, тангажа}
 \begin{figure}
 \centering
 \includegraphics[scale=0.25]{ErrEstAngle3}
@@ -671,18 +682,18 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 \end{figure}
 \end{frame}
 
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-\subsection{Траєкторія руху ЛА за БІНС і ФК} 
-\begin{frame}%[plain]
-\frametitle{Траєкторія руху за БІНС і ФК}
-\noindent
-\begin{figure}[l]
-% \noindent\includegraphics[scale=0.2]{only_ins}
-\includegraphics[scale=0.3]{snsless}
-\caption{\tiny Траєкторія руху ЛА за БІНС і ФК }
-\end{figure}
-
-\end{frame}
+% %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+% \subsection{Траєкторія руху ЛА за БІНС і ФК при відмові СНС} 
+% \begin{frame}%[plain]
+% \frametitle{Траєкторія руху за БІНС і ФК}
+% \noindent
+% \begin{figure}[l]
+% % \noindent\includegraphics[scale=0.2]{only_ins}
+% \includegraphics[scale=0.3]{snsless}
+% \caption{\tiny Траєкторія руху ЛА за БІНС і ФК }
+% \end{figure}
+% 
+% \end{frame}
 %%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 \subsection{Середньоквадратичні відхилення}
 \begin{frame}
@@ -698,14 +709,14 @@ $\Delta B_{i} =\left(\begin{array}{ccc}
 Швидкості, м/с& 0.0236254078& 0.0235478062& 0.0231813797 \\ \hline 
 Орієнтація, рад& 8.42E-005& 0.000133569& 0.0004735418 \\ \hline 
 Дрейф ДКШ, рад/с& 2.50E-007& 1.28E-006 & 3.80E-007 \\ \hline 
-Акселером, g & 0.00005007264& 0.0000344999 & 0.00004686141 \\ \hline 
+Акселером, м/с$^{2}$ & 0.0005007264& 0.000344999 & 0.0004686141 \\ \hline 
 \end{tabular}
 \label{tab:results}
 \end{table}
 \end{block}
 \end{frame}
 
-%%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+%%%<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % Last slide... with Easter Egg
 \section{The End} 
 \begin{frame}%[plain]
